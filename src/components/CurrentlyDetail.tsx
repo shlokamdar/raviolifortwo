@@ -26,8 +26,8 @@ export function CurrentlyDetail() {
     if (!status) return null;
 
     return (
-        <div className="hidden sm:block opacity-60">
-            <p className="font-body text-[11px] md:text-[12px] text-[var(--color-ink-muted)] lowercase text-right">
+        <div className="opacity-50 mt-1">
+            <p className="font-body text-[11px] md:text-[12px] text-[var(--color-ink-faint)] lowercase text-left italic">
                 currently: {status}
             </p>
         </div>

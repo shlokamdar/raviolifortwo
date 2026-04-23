@@ -15,7 +15,7 @@ export function TimeGreeting() {
     if (!greeting) return null;
 
     return (
-        <p className="font-body text-[0.8rem] text-[var(--color-ink-faint)] mb-4 lowercase tracking-tight">
+        <p className="font-body text-[0.8rem] text-[var(--color-ink-faint)] lowercase tracking-tight">
             {greeting}
         </p>
     );

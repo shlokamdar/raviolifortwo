@@ -30,7 +30,7 @@ export default async function Home() {
         <AmbientParticles />
 
         <div className="flex flex-col gap-6 relative z-10">
-          <div className="flex justify-between items-start">
+          <div className="flex flex-col mb-4">
             <TimeGreeting />
             <CurrentlyDetail />
           </div>

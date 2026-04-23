@@ -31,7 +31,7 @@ export function AmbientParticles() {
   }, []);
 
   return (
-    <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden select-none" aria-hidden="true">
+    <div className="absolute inset-y-0 left-1/2 -translate-x-1/2 w-[100vw] z-0 pointer-events-none overflow-hidden select-none" aria-hidden="true">
       {particles.map((p) => (
         <div
           key={p.id}

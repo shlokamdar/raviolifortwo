@@ -2,7 +2,7 @@
 
 export function HeroBackground() {
     return (
-        <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden select-none" aria-hidden="true">
+        <div className="absolute inset-y-0 left-1/2 -translate-x-1/2 w-[100vw] z-0 pointer-events-none overflow-hidden select-none" aria-hidden="true">
             {/* Paper Texture using SVG feTurbulence */}
             <div className="absolute inset-0 opacity-[0.03] mix-blend-multiply">
                 <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
