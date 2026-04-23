@@ -25,8 +25,27 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "raviolifortwo 🍓",
-  description: "a room that remembers you",
+  title: {
+    default: "raviolifortwo | poems by seven",
+    template: "%s | raviolifortwo"
+  },
+  description: "a room that remembers you — poems and prose by seven (shloka kamadar). exploring intimacy, memory, and the quiet moments in between.",
+  keywords: ["raviolifortwo", "poems by seven", "shloka kamadar", "poetry", "poetry archive", "literary blog", "seven poems"],
+  authors: [{ name: "Shloka Kamadar", url: "https://raviolifortwo.com" }],
+  creator: "Shloka Kamadar",
+  openGraph: {
+    title: "raviolifortwo | poems by seven",
+    description: "a room that remembers you — poems and prose by seven (shloka kamadar).",
+    url: "https://raviolifortwo.com",
+    siteName: "raviolifortwo",
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "raviolifortwo | poems by seven",
+    description: "a room that remembers you — poems and prose by seven.",
+  },
   icons: {
     icon: 'data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🍓</text></svg>',
   },

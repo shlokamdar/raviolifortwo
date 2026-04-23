@@ -47,6 +47,10 @@ export default function AboutPage() {
                     stay as long as you need<br />
                     the tea is still warm
                 </p>
+
+                <div className="pt-12 text-[0.85rem] text-[var(--color-ink-faint)] tracking-widest uppercase">
+                    — Shloka Kamadar
+                </div>
             </article>
 
             <footer className="mt-32 pb-24 border-t border-[var(--color-border)] pt-12">
