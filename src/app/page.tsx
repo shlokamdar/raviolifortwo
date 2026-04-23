@@ -25,7 +25,7 @@ export default async function Home() {
     <PageContainer maxWidth="reading">
       <ReturningVisitor />
       {/* Above the fold: Featured Fragment */}
-      <section className="mb-24 mt-12 md:mt-32 relative">
+      <section className="mb-24 mt-0 relative">
         <HeroBackground />
         <AmbientParticles />
 

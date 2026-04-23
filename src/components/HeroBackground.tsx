@@ -14,13 +14,6 @@ export function HeroBackground() {
                 </svg>
             </div>
 
-            {/* Soft Radial Vignette - 8-12% darker at edges */}
-            <div
-                className="absolute inset-0"
-                style={{
-                    background: 'radial-gradient(circle at center, transparent 30%, rgba(181, 168, 152, 0.08) 100%)'
-                }}
-            />
         </div>
     );
 }
