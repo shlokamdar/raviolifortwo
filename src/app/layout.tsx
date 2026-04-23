@@ -47,7 +47,7 @@ export default function RootLayout({
         "h-full antialiased"
       )}
     >
-      <body className="min-h-full flex flex-col font-body selection:bg-[var(--accent-general)]/30 selection:text-ink">
+      <body className="min-h-full flex flex-col font-body selection:bg-[var(--accent-general)]/30 selection:text-[var(--color-ink)]">
         <PorchLightEffect />
         <SiteNav />
         <main className="flex-grow">

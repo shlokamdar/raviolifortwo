@@ -11,23 +11,35 @@ export function getTimeOfDay(): TimeOfDay {
 
 export const porchLightTokens: Record<TimeOfDay, Record<string, string>> = {
     morning: {
-        '--color-parchment': '#F8F3EB',
-        '--text-opacity': '1',
+        '--color-parchment': '#F5F0E8',
+        '--color-canvas': '#F5F0E8',
         '--color-gold': '#B8893A',
+        '--color-ink': '#1C1814',
+        '--color-ink-muted': '#6B5E52',
+        '--color-ink-faint': '#B5A898',
     },
     afternoon: {
-        '--color-parchment': '#F8F3EB',
-        '--text-opacity': '1',
+        '--color-parchment': '#FAF7F2',
+        '--color-canvas': '#FAF7F2',
         '--color-gold': '#B8893A',
+        '--color-ink': '#1C1814',
+        '--color-ink-muted': '#6B5E52',
+        '--color-ink-faint': '#B5A898',
     },
     evening: {
-        '--color-parchment': '#F2EAD8',
-        '--text-opacity': '0.93',
+        '--color-parchment': '#F0E8DC',
+        '--color-canvas': '#F0E8DC',
         '--color-gold': '#A67C30',
+        '--color-ink': 'rgba(28, 24, 20, 0.93)',
+        '--color-ink-muted': 'rgba(107, 94, 82, 0.90)',
+        '--color-ink-faint': 'rgba(181, 168, 152, 0.90)',
     },
     night: {
-        '--color-parchment': '#EDE3CF',
-        '--text-opacity': '0.89',
+        '--color-parchment': '#EBE0CE',
+        '--color-canvas': '#EBE0CE',
         '--color-gold': '#9E7228',
+        '--color-ink': 'rgba(28, 24, 20, 0.89)',
+        '--color-ink-muted': 'rgba(107, 94, 82, 0.86)',
+        '--color-ink-faint': 'rgba(181, 168, 152, 0.86)',
     },
 };

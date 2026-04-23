@@ -13,6 +13,19 @@
   /* default border */
   --color-border-hover: rgba(107, 94, 82, 0.35);
 
+  /* Cozy surfaces */
+  --color-surface: rgba(255, 255, 255, 0.55);
+  --color-surface-strong: rgba(255, 255, 255, 0.72);
+  --color-surface-warm: rgba(255, 247, 235, 0.65);
+  --color-shadow: rgba(28, 24, 20, 0.06);
+  --shadow-soft: 0 1px 0 rgba(28, 24, 20, 0.06), 0 12px 26px rgba(28, 24, 20, 0.08);
+  --shadow-lift: 0 1px 0 rgba(28, 24, 20, 0.06), 0 18px 44px rgba(28, 24, 20, 0.12);
+  --radius-cozy: 18px;
+
+  /* Porch light system (time-of-day) */
+  --color-parchment: var(--color-canvas);
+  --color-gold: #B8893A;
+
   /* Section accent colours — each section of the site gets one */
   --accent-general: #C94F2C;
   /* tomato red — new / unpublished poems */
@@ -40,6 +53,13 @@
   --color-ink-faint: var(--color-ink-faint);
   --color-border: var(--color-border);
   --color-border-hover: var(--color-border-hover);
+  --color-surface: var(--color-surface);
+  --color-surface-strong: var(--color-surface-strong);
+  --color-surface-warm: var(--color-surface-warm);
+  --color-shadow: var(--color-shadow);
+  --shadow-soft: var(--shadow-soft);
+  --shadow-lift: var(--shadow-lift);
+  --radius-cozy: var(--radius-cozy);
 
   --accent-general: var(--accent-general);
   --accent-archive: var(--accent-archive);
@@ -69,6 +89,37 @@ body {
   color: var(--foreground);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+html {
+  text-rendering: optimizeLegibility;
+}
+
+/* Make UI text readable everywhere, responsively */
+.page-content {
+  padding-left: clamp(20px, 4vw, 48px);
+  padding-right: clamp(20px, 4vw, 48px);
+  padding-top: clamp(84px, 10vw, 128px);
+  padding-bottom: clamp(84px, 10vw, 128px);
+}
+
+
+/* Paper + lamplight background (subtle, homely) */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(900px 540px at 18% 8%, rgba(196, 138, 31, 0.08), transparent 60%),
+    radial-gradient(740px 520px at 84% 18%, rgba(201, 79, 44, 0.06), transparent 58%),
+    radial-gradient(900px 760px at 50% 105%, rgba(107, 127, 94, 0.06), transparent 60%),
+    radial-gradient(circle at 1px 1px, rgba(28, 24, 20, 0.045) 1px, transparent 1px);
+  background-size: auto, auto, auto, 18px 18px;
+  background-repeat: no-repeat, no-repeat, no-repeat, repeat, repeat;
+  background-position: 0 0, 0 0, 0 0, 0 0, 0 0;
+  opacity: 1;
 }
 
 /* Base typography rules */

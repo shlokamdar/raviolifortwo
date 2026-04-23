@@ -5,23 +5,6 @@ import { SectionBreak } from "@/components/SectionBreak";
 
 const shelfItems = [
     {
-        id: "letters",
-        title: "letters",
-        description: "words i didn't send. or maybe i did, and i just wanted to keep a copy of the ghost they left behind.",
-        status: "active",
-        links: [
-            { label: "letters to robin →", href: "/archive?category=letters-to-robin" },
-            { label: "letters to peter →", href: "/archive?category=letters-to-peter" }
-        ]
-    },
-    {
-        id: "peter-poems",
-        title: "peter poems",
-        description: "a collection of fragments about a person who isn't here anymore.",
-        status: "active",
-        links: [{ label: "read the group →", href: "/archive?category=letters-to-peter" }]
-    },
-    {
         id: "instagram-archive",
         title: "instagram archive",
         description: "poems from my teenage years. each one a fragment of a version of me i was still becoming.",
@@ -77,6 +60,18 @@ export default function ShelfPage() {
                 ))}
             </div>
 
+            <section className="mt-16 border-t border-[var(--color-border)] pt-12">
+                <span className="text-[0.6rem] font-body uppercase tracking-wider text-[var(--color-ink-faint)]">
+                    coming soon
+                </span>
+                <p className="mt-3 font-display italic text-[clamp(1.3rem,2.8vw,1.7rem)] text-[var(--color-ink)] leading-relaxed max-w-[520px]">
+                    i kept your place
+                </p>
+                <p className="mt-2 font-body text-[0.85rem] text-[var(--color-ink-muted)] leading-relaxed max-w-[520px]">
+                    a book, being written.
+                </p>
+            </section>
+
             <SectionBreak texture className="mt-32 mb-24" />
 
             <section className="mb-24">
@@ -84,12 +79,6 @@ export default function ShelfPage() {
                     "there are so many rooms in this house i haven't built yet."
                 </p>
                 <div className="mt-12 flex flex-col gap-4">
-                    <Link
-                        href="/interactions"
-                        className="text-[0.85rem] font-body text-[var(--color-ink-muted)] hover:text-[var(--color-ink)] transition-colors underline underline-offset-4 decoration-[var(--color-border)]"
-                    >
-                        view small experiments &rarr;
-                    </Link>
                     <Link
                         href="/"
                         className="text-[0.85rem] font-body text-[var(--color-ink-faint)] hover:text-[var(--color-ink-muted)] transition-colors underline underline-offset-4 decoration-[var(--color-border)]"

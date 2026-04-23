@@ -24,7 +24,7 @@ export function NewsletterInline() {
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
-                        className="font-lora italic text-ink"
+                        className="font-display italic text-[var(--color-ink)] text-[1.05rem] leading-relaxed"
                     >
                         thank you. i'll write soon.
                     </motion.p>
@@ -35,29 +35,33 @@ export function NewsletterInline() {
                         exit={{ opacity: 0 }}
                     >
                         <p style={{
-                            fontFamily: "'EB Garamond', Georgia, serif",
+                            fontFamily: "var(--font-display)",
                             fontStyle: 'italic',
                             fontSize: '18px',
                             color: 'var(--color-ink)',
-                        }} className="mb-4">
+                            lineHeight: 1.55,
+                        }} className="mb-5">
                             i send letters sometimes. no schedule. only when it's ready.
                         </p>
-                        <form onSubmit={handleSubmit} className="relative flex items-center group">
+                        <form
+                            onSubmit={handleSubmit}
+                            className="relative flex items-center gap-3 rounded-[var(--radius-cozy)] bg-[var(--color-surface-strong)] border border-[var(--color-border)] px-4 py-3 shadow-[var(--shadow-soft)]"
+                        >
                             <input
                                 type="email"
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
                                 placeholder="your email"
                                 className={cn(
-                                    "w-full bg-transparent border-b border-shadow py-2 pr-10 focus:outline-none transition-colors",
-                                    status === "submitting" ? "border-gold" : "hover:border-dust"
+                                    "w-full bg-transparent text-[0.95rem] text-[var(--color-ink)] placeholder:text-[var(--color-ink-faint)] focus:outline-none"
                                 )}
                                 required
                             />
                             <button
                                 type="submit"
                                 disabled={status === "submitting"}
-                                className="absolute right-0 text-gold disabled:opacity-50"
+                                className="shrink-0 text-[var(--accent-archive)] disabled:opacity-50 transition-colors hover:text-[var(--color-ink)]"
+                                aria-label="submit email"
                             >
                                 <motion.div
                                     animate={status === "submitting" ? { rotate: 360 } : {}}

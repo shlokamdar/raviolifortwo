@@ -5,7 +5,6 @@ import { PageContainer } from "@/components/PageContainer";
 import { PoetNote } from "@/components/PoetNote";
 import { InteractiveFeature } from "@/components/InteractiveFeature";
 import { SectionBreak } from "@/components/SectionBreak";
-import { PoemShare } from "@/components/PoemShare";
 
 interface PoemPageProps {
     params: {
@@ -54,10 +53,6 @@ export default async function PoemPage({ params }: PoemPageProps) {
                     ))}
                 </div>
 
-                <div className="mt-20 pt-8 border-t border-[var(--color-border)]/10">
-                    <PoemShare slug={poem.slug} cardLine={poem.cardLine} />
-                </div>
-
                 <div className="mt-16 mb-24">
                     <Link
                         href={isLetter ? "/letters" : "/archive"}
@@ -65,10 +60,6 @@ export default async function PoemPage({ params }: PoemPageProps) {
                     >
                         &larr; back to {isLetter ? "letters i kept" : "what i wrote"}
                     </Link>
-                </div>
-
-                <div style={{ marginTop: '2rem', textAlign: 'center' }}>
-                    {/* single share option is above in PoemShare */}
                 </div>
             </div>
         </PageContainer>

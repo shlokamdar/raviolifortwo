@@ -36,7 +36,7 @@ export default async function LettersPage() {
                                 <span className="font-display italic text-xl text-[var(--color-ink)] group-hover:text-[var(--accent-robin)] transition-colors underline-offset-4 group-hover:underline decoration-[var(--accent-robin)]/30">
                                     {letter.title}
                                 </span>
-                                <span className="font-handwritten text-[0.9rem] text-[var(--color-ink-faint)]">
+                                <span className="font-body text-[0.9rem] text-[var(--color-ink-faint)]">
                                     {letter.eyebrow}
                                 </span>
                             </Link>
@@ -64,7 +64,7 @@ export default async function LettersPage() {
                                 <span className="font-display italic text-xl text-[var(--color-ink)] group-hover:text-[var(--accent-peter)] transition-colors underline-offset-4 group-hover:underline decoration-[var(--accent-peter)]/30">
                                     {letter.title}
                                 </span>
-                                <span className="font-handwritten text-[0.9rem] text-[var(--color-ink-faint)]">
+                                <span className="font-body text-[0.9rem] text-[var(--color-ink-faint)]">
                                     {letter.eyebrow}
                                 </span>
                             </Link>

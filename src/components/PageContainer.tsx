@@ -17,7 +17,7 @@ const maxWidths = {
 export function PageContainer({ children, className, maxWidth = "reading" }: PageContainerProps) {
     return (
         <main className={cn(
-            "w-full mx-auto px-6 py-24 md:py-32 page-content",
+            "w-full mx-auto page-content",
             maxWidths[maxWidth],
             maxWidth === "reading" && "poem-container",
             className

@@ -24,10 +24,10 @@ export function TagFilter({ tags, activeTag, onTagSelect, className }: TagFilter
             <button
                 onClick={() => onTagSelect(null)}
                 className={cn(
-                    "whitespace-nowrap px-4 py-2 text-[11px] font-dm-sans uppercase tracking-[0.1em] transition-colors rounded-full border border-shadow",
+                    "whitespace-nowrap px-4 py-2 text-[11px] font-body uppercase tracking-[0.14em] transition-colors rounded-full border border-[var(--color-border)]",
                     activeTag === null
-                        ? "bg-gold text-ink border-gold"
-                        : "bg-parchment text-dust hover:border-dust"
+                        ? "bg-[var(--color-surface-warm)] text-[var(--color-ink)]"
+                        : "bg-transparent text-[var(--color-ink-muted)] hover:text-[var(--color-ink)] hover:bg-[var(--color-surface)]"
                 )}
             >
                 all
@@ -37,10 +37,10 @@ export function TagFilter({ tags, activeTag, onTagSelect, className }: TagFilter
                     key={tag}
                     onClick={() => onTagSelect(tag)}
                     className={cn(
-                        "whitespace-nowrap px-4 py-2 text-[11px] font-dm-sans uppercase tracking-[0.1em] transition-colors rounded-full border border-shadow",
+                        "whitespace-nowrap px-4 py-2 text-[11px] font-body uppercase tracking-[0.14em] transition-colors rounded-full border border-[var(--color-border)]",
                         activeTag === tag
-                            ? "bg-gold text-ink border-gold"
-                            : "bg-parchment text-dust hover:border-dust"
+                            ? "bg-[var(--color-surface-warm)] text-[var(--color-ink)]"
+                            : "bg-transparent text-[var(--color-ink-muted)] hover:text-[var(--color-ink)] hover:bg-[var(--color-surface)]"
                     )}
                 >
                     {tag.replace(/-/g, ' ')}
