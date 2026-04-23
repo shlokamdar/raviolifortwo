@@ -15,13 +15,6 @@ export function PoemCard({ poem, className }: PoemCardProps) {
         'letters-to-peter': 'var(--accent-peter)',
     }[poem.category] || 'var(--accent-general)';
 
-    const badges: Record<string, { label: string; color: string }> = {
-        'general': { label: 'new', color: 'var(--accent-general)' },
-        'archives-from-instagram': { label: 'archive', color: 'var(--accent-archive)' },
-    };
-
-    const badge = badges[poem.category];
-
     return (
         <Link
             href={`/poems/${poem.slug}`}

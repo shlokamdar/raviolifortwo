@@ -175,6 +175,109 @@ body::before {
   font-weight: 400;
 }
 
+/* Subtle underline draw animation (nav + small links) */
+.underline-draw {
+  position: relative;
+  text-decoration: none;
+}
+
+.underline-draw::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -6px;
+  height: 1px;
+  background: var(--underline-accent, var(--color-border-hover));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 240ms ease;
+  opacity: 0.9;
+}
+
+.underline-draw:hover::after,
+.underline-draw:focus-visible::after {
+  transform: scaleX(1);
+}
+
+/* Newsletter input: warm focus glow */
+.newsletter-input:focus-visible {
+  outline: none;
+  box-shadow:
+    0 0 0 2px color-mix(in srgb, var(--accent-general) 26%, transparent),
+    0 12px 26px rgba(28, 24, 20, 0.08);
+}
+
+/* Footer strawberry: slow warm glow */
+@keyframes strawberry-glow {
+  0% {
+    filter: drop-shadow(0 0 0 rgba(201, 79, 44, 0));
+    opacity: 0.42;
+  }
+  50% {
+    filter: drop-shadow(0 0 18px rgba(201, 79, 44, 0.32));
+    opacity: 0.62;
+  }
+  100% {
+    filter: drop-shadow(0 0 0 rgba(201, 79, 44, 0));
+    opacity: 0.42;
+  }
+}
+
+.strawberry-glow {
+  animation: strawberry-glow 4.8s ease-in-out infinite;
+}
+
+/* About page: watercolor texture + dust specks */
+.watercolor-layer {
+  background:
+    radial-gradient(920px 520px at 18% 22%, rgba(201, 79, 44, 0.045), transparent 62%),
+    radial-gradient(860px 560px at 82% 28%, rgba(184, 92, 122, 0.04), transparent 60%),
+    radial-gradient(920px 620px at 50% 110%, rgba(196, 138, 31, 0.035), transparent 62%);
+}
+
+@keyframes candle-flicker {
+  0% { transform: translateY(0) scale(1); opacity: 0.7; }
+  30% { transform: translateY(-0.5px) scale(0.98); opacity: 0.85; }
+  55% { transform: translateY(0.6px) scale(1.02); opacity: 0.62; }
+  100% { transform: translateY(0) scale(1); opacity: 0.7; }
+}
+
+.candle-flame {
+  transform-origin: 50% 90%;
+  animation: candle-flicker 1.8s ease-in-out infinite;
+}
+
+@keyframes envelope-sway {
+  0% { transform: rotate(-1.2deg) translateY(0); }
+  50% { transform: rotate(1.6deg) translateY(-2px); }
+  100% { transform: rotate(-1.2deg) translateY(0); }
+}
+
+.envelope-sway {
+  transform-origin: 50% 30%;
+  animation: envelope-sway 5.6s ease-in-out infinite;
+}
+
+@keyframes book-breathe {
+  0% { transform: translateY(0); opacity: 0.55; }
+  50% { transform: translateY(-2px); opacity: 0.7; }
+  100% { transform: translateY(0); opacity: 0.55; }
+}
+
+.book-breathe {
+  animation: book-breathe 6.8s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .strawberry-glow,
+  .candle-flame,
+  .envelope-sway,
+  .book-breathe {
+    animation: none !important;
+  }
+}
+
 /* Whitespace preservation */
 .preserve-whitespace {
   white-space: pre-wrap;

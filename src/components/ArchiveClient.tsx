@@ -85,7 +85,7 @@ export function ArchiveClient({ initialPoems }: ArchiveClientProps) {
                         — archives from instagram
                     </p>
                     <p className="font-body text-[0.9rem] text-[var(--color-ink-muted)] leading-relaxed">
-                        "these are poems from my teenage years. each one a fragment of a version of me i was still becoming."
+                        &quot;these are poems from my teenage years. each one a fragment of a version of me i was still becoming.&quot;
                     </p>
                 </div>
             )}
@@ -101,7 +101,7 @@ export function ArchiveClient({ initialPoems }: ArchiveClientProps) {
                             exit={{ opacity: 0.3 }}
                             transition={{ duration: 0.2 }}
                         >
-                            <PoemCard poem={poem} />
+                            <PoemCard poem={poem} className="hover:-translate-y-[4px]" />
                         </motion.div>
                     ))}
                 </AnimatePresence>

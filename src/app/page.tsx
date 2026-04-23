@@ -1,19 +1,15 @@
 import Link from "next/link";
 import { getAllPoems } from "@/lib/poems";
 import { PageContainer } from "@/components/PageContainer";
-import { EyebrowLabel } from "@/components/EyebrowLabel";
-import { SectionBreak } from "@/components/SectionBreak";
 import { PoemCard } from "@/components/PoemCard";
 import { NewsletterInline } from "@/components/NewsletterInline";
 import { ReturningVisitor } from "@/components/ReturningVisitor";
 import { TimeGreeting } from "@/components/TimeGreeting";
 import { RotatingPoem } from "@/components/RotatingPoem";
+import { DividerSprigSvg } from "@/components/ornaments/NotebookIllustrations";
 
 export default async function Home() {
   const allPoems = await getAllPoems();
-
-  // Featured poem (picking the first one for now)
-  const featuredPoem = allPoems[0];
 
   // Recent poems (latest 2)
   const recentPoems = allPoems.slice(0, 2);
@@ -39,6 +35,13 @@ export default async function Home() {
       </section>
 
       {/* Reduced bottom margin from 64px (mb-16) to Recently section */}
+      <div className="my-10 flex items-center justify-center">
+        <DividerSprigSvg
+          aria-hidden="true"
+          className="w-[260px] md:w-[340px] h-auto opacity-55"
+          strokeColor="var(--accent-general)"
+        />
+      </div>
 
       {/* Recently */}
       <section className="mb-[72px]">

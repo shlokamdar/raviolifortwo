@@ -50,10 +50,11 @@ export function SiteNav() {
                             key={link.href}
                             href={link.href}
                             style={{
-                                color: pathname === link.href ? link.accent : undefined
+                                color: pathname === link.href ? link.accent : undefined,
+                                ["--underline-accent" as never]: link.accent,
                             }}
                             className={cn(
-                                "nav-link transition-colors duration-300 text-[0.9rem] font-body px-3 py-2 rounded-full",
+                                "nav-link underline-draw transition-colors duration-300 text-[0.9rem] font-body px-3 py-2 rounded-full",
                                 pathname === link.href
                                     ? ""
                                     : "text-[var(--color-ink-muted)] hover:text-[var(--color-ink)] hover:bg-[var(--color-surface-warm)]"
@@ -109,11 +110,12 @@ export function SiteNav() {
                                     href={link.href}
                                     onClick={() => setIsOpen(false)}
                                     className={cn(
-                                        "font-display italic text-[clamp(1.9rem,7vw,2.6rem)] transition-all duration-300",
+                                        "underline-draw font-display italic text-[clamp(1.9rem,7vw,2.6rem)] transition-all duration-300",
                                         pathname === link.href
                                             ? "text-[var(--color-ink)] pl-4 border-l-2 border-[var(--color-border)]"
                                             : "text-[var(--color-ink-muted)]"
                                     )}
+                                    style={{ ["--underline-accent" as never]: link.accent }}
                                 >
                                     {link.label}
                                 </Link>

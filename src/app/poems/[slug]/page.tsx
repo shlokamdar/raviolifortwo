@@ -2,9 +2,6 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import { getPoemBySlug } from "@/lib/poems";
 import { PageContainer } from "@/components/PageContainer";
-import { PoetNote } from "@/components/PoetNote";
-import { InteractiveFeature } from "@/components/InteractiveFeature";
-import { SectionBreak } from "@/components/SectionBreak";
 
 interface PoemPageProps {
     params: {
@@ -20,15 +17,7 @@ export default async function PoemPage({ params }: PoemPageProps) {
         notFound();
     }
 
-    const accentColor = {
-        'general': 'var(--accent-general)',
-        'archives-from-instagram': 'var(--accent-archive)',
-        'letters-to-robin': 'var(--accent-robin)',
-        'letters-to-peter': 'var(--accent-peter)',
-    }[poem.category] || 'var(--accent-general)';
-
     const isLetter = poem.category === 'letters-to-robin' || poem.category === 'letters-to-peter';
-    const recipient = poem.category === 'letters-to-robin' ? 'Robin' : 'Peter';
 
     return (
         <PageContainer maxWidth="reading" className="opacity-0 animate-fade-in fill-mode-forwards pt-12 md:pt-32">

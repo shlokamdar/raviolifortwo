@@ -1,9 +1,8 @@
 "use client";
 
 import { Poem } from "@/types/poem";
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
-import { cn } from "@/lib/utils";
 
 interface RotatingPoemProps {
     poems: Poem[];
@@ -13,10 +12,12 @@ export function RotatingPoem({ poems }: RotatingPoemProps) {
     const [randomPoem, setRandomPoem] = useState<Poem | null>(null);
 
     useEffect(() => {
-        if (poems.length > 0) {
+        if (poems.length === 0) return;
+        const t = window.setTimeout(() => {
             const randomIndex = Math.floor(Math.random() * poems.length);
-            setRandomPoem(poems[randomIndex]);
-        }
+            setRandomPoem(poems[randomIndex] ?? null);
+        }, 0);
+        return () => window.clearTimeout(t);
     }, [poems]);
 
     if (!randomPoem) return null;

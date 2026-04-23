@@ -1,7 +1,7 @@
 import { PageContainer } from "@/components/PageContainer";
-import { EyebrowLabel } from "@/components/EyebrowLabel";
 import Link from "next/link";
 import { getPoemsByCategory } from "@/lib/poems";
+import { EnvelopeSvg } from "@/components/ornaments/NotebookIllustrations";
 
 export default async function LettersPage() {
     const robinLetters = await getPoemsByCategory('letters-to-robin');
@@ -42,7 +42,13 @@ export default async function LettersPage() {
                             </Link>
                         ))
                     ) : (
-                        <p className="font-display italic text-[var(--color-ink-faint)]">the drawer is empty for now.</p>
+                        <div className="flex flex-col items-start gap-3">
+                            <EnvelopeSvg aria-hidden="true" className="envelope-sway w-[88px] h-auto opacity-55" />
+                            <p className="font-display italic text-[var(--color-ink-faint)]">the drawer is empty for now.</p>
+                            <p className="font-display italic text-[0.95rem] text-[var(--color-ink-muted)]">
+                                something is being written.
+                            </p>
+                        </div>
                     )}
                 </div>
             </section>
@@ -50,7 +56,7 @@ export default async function LettersPage() {
             <section id="peter" className="mb-32">
                 <h2 className="font-body text-[0.7rem] uppercase tracking-[0.15em] text-[var(--accent-peter)] mb-2">LETTERS TO PETER</h2>
                 <p className="font-body italic text-[0.9rem] text-[var(--color-ink-muted)] mb-10">
-                    for the ones you couldn't stop thinking about
+                    for the ones you {"couldn't"} stop thinking about
                 </p>
 
                 <div className="flex flex-col gap-10">
@@ -70,7 +76,17 @@ export default async function LettersPage() {
                             </Link>
                         ))
                     ) : (
-                        <p className="font-display italic text-[var(--color-ink-faint)]">no envelopes here yet.</p>
+                        <div className="flex flex-col items-start gap-3">
+                            <EnvelopeSvg
+                                aria-hidden="true"
+                                className="envelope-sway w-[88px] h-auto opacity-55"
+                                strokeColor="color-mix(in srgb, var(--accent-peter) 75%, var(--color-ink-muted))"
+                            />
+                            <p className="font-display italic text-[var(--color-ink-faint)]">no envelopes here yet.</p>
+                            <p className="font-display italic text-[0.95rem] text-[var(--color-ink-muted)]">
+                                something is being written.
+                            </p>
+                        </div>
                     )}
                 </div>
             </section>

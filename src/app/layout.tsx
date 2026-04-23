@@ -31,12 +31,12 @@ export const metadata: Metadata = {
   },
   description: "a room that remembers you — poems and prose by seven (shloka kamadar). exploring intimacy, memory, and the quiet moments in between.",
   keywords: ["raviolifortwo", "poems by seven", "shloka kamadar", "poetry", "poetry archive", "literary blog", "seven poems"],
-  authors: [{ name: "Shloka Kamadar", url: "https://raviolifortwo.com" }],
+  authors: [{ name: "Shloka Kamadar", url: "https://raviolifortwo.vercel.app" }],
   creator: "Shloka Kamadar",
   openGraph: {
     title: "raviolifortwo | poems by seven",
     description: "a room that remembers you — poems and prose by seven (shloka kamadar).",
-    url: "https://raviolifortwo.com",
+    url: "https://raviolifortwo.vercel.app",
     siteName: "raviolifortwo",
     locale: "en_US",
     type: "website",
@@ -73,22 +73,29 @@ export default function RootLayout({
           {children}
         </main>
         <footer className="py-12 flex flex-col items-center gap-4">
-          <p style={{
-            fontFamily: "var(--font-body)",
-            fontSize: '12px',
-            color: 'var(--color-ink-faint)',
-            letterSpacing: '0.12em',
-            textAlign: 'center',
-          }}>
-            the light is always on.
-          </p>
-          <div style={{
-            fontSize: '1.2rem',
-            opacity: 0.4,
-            cursor: 'default',
-            userSelect: 'none'
-          }}>
-            🍓
+          <div className="flex flex-col items-center gap-4">
+            <p
+              style={{
+                fontFamily: "var(--font-body)",
+                fontSize: "12px",
+                color: "var(--color-ink-faint)",
+                letterSpacing: "0.12em",
+                textAlign: "center",
+              }}
+            >
+              the light is always on.
+            </p>
+            <div
+              className="strawberry-glow"
+              style={{
+                fontSize: "1.2rem",
+                cursor: "default",
+                userSelect: "none",
+              }}
+              aria-hidden="true"
+            >
+              🍓
+            </div>
           </div>
         </footer>
       </body>

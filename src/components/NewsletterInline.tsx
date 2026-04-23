@@ -26,7 +26,7 @@ export function NewsletterInline() {
                         exit={{ opacity: 0 }}
                         className="font-display italic text-[var(--color-ink)] text-[1.05rem] leading-relaxed"
                     >
-                        thank you. i'll write soon.
+                        thank you. {"i'll"} write soon.
                     </motion.p>
                 ) : (
                     <motion.div
@@ -41,7 +41,7 @@ export function NewsletterInline() {
                             color: 'var(--color-ink)',
                             lineHeight: 1.55,
                         }} className="mb-5">
-                            i send letters sometimes. no schedule. only when it's ready.
+                            i send letters sometimes. no schedule. only when {"it's"} ready.
                         </p>
                         <form
                             onSubmit={handleSubmit}
@@ -53,7 +53,7 @@ export function NewsletterInline() {
                                 onChange={(e) => setEmail(e.target.value)}
                                 placeholder="your email"
                                 className={cn(
-                                    "w-full bg-transparent text-[0.95rem] text-[var(--color-ink)] placeholder:text-[var(--color-ink-faint)] focus:outline-none"
+                                    "newsletter-input w-full bg-transparent text-[0.95rem] text-[var(--color-ink)] placeholder:text-[var(--color-ink-faint)] focus:outline-none"
                                 )}
                                 required
                             />

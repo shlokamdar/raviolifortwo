@@ -41,7 +41,7 @@ export function InteractiveFeature({ slug, type, className }: InteractiveFeature
             >
                 <span className="eyebrow block mb-6 opacity-40">a question to carry with you</span>
                 <p className="font-display italic text-[clamp(1.35rem,3.4vw,1.9rem)] text-[var(--color-ink)] leading-tight max-w-[560px]">
-                    "{promptText}"
+                    &quot;{promptText}&quot;
                 </p>
                 <div className="mt-8 text-[10px] font-body text-[var(--color-ink-faint)] uppercase tracking-[0.2em] opacity-70">
                     — raviolifortwo
@@ -68,7 +68,7 @@ export function InteractiveFeature({ slug, type, className }: InteractiveFeature
                 <div className="text-3xl mb-6 opacity-80">{featureContent.icon}</div>
                 <span className="eyebrow block mb-3 opacity-40">{featureContent.label}</span>
                 <p className="font-display italic text-[1.05rem] text-[var(--color-ink-muted)] leading-relaxed mb-6">
-                    "{featureContent.desc}"
+                    &quot;{featureContent.desc}&quot;
                 </p>
                 <div className="h-[1px] w-8 bg-[var(--color-border)] mx-auto mb-6" />
                 <p className="text-[10px] font-body text-[var(--color-ink-faint)] uppercase tracking-[0.2em] opacity-70">

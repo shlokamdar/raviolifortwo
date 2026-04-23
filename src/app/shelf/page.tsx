@@ -1,7 +1,8 @@
 import Link from "next/link";
 import { PageContainer } from "@/components/PageContainer";
-import { EyebrowLabel } from "@/components/EyebrowLabel";
 import { SectionBreak } from "@/components/SectionBreak";
+import { BookSpineSvg } from "@/components/ornaments/NotebookIllustrations";
+import { TypewriterReveal } from "@/components/ornaments/TypewriterReveal";
 
 const shelfItems = [
     {
@@ -64,19 +65,24 @@ export default function ShelfPage() {
                 <span className="text-[0.6rem] font-body uppercase tracking-wider text-[var(--color-ink-faint)]">
                     coming soon
                 </span>
-                <p className="mt-3 font-display italic text-[clamp(1.3rem,2.8vw,1.7rem)] text-[var(--color-ink)] leading-relaxed max-w-[520px]">
-                    i kept your place
-                </p>
-                <p className="mt-2 font-body text-[0.85rem] text-[var(--color-ink-muted)] leading-relaxed max-w-[520px]">
-                    a book, being written.
-                </p>
+                <div className="mt-6 flex items-start gap-6">
+                    <BookSpineSvg aria-hidden="true" className="book-breathe w-[54px] h-auto opacity-65 shrink-0" />
+                    <div>
+                        <p className="font-display italic text-[clamp(1.3rem,2.8vw,1.7rem)] text-[var(--color-ink)] leading-relaxed max-w-[520px]">
+                            i kept your place
+                        </p>
+                        <p className="mt-2 font-body text-[0.85rem] text-[var(--color-ink-muted)] leading-relaxed max-w-[520px]">
+                            a book, being written.
+                        </p>
+                    </div>
+                </div>
             </section>
 
             <SectionBreak texture className="mt-32 mb-24" />
 
             <section className="mb-24">
                 <p className="font-display text-[1rem] text-[var(--color-ink-faint)] mt-24">
-                    "there are so many rooms in this house i haven't built yet."
+                    <TypewriterReveal text={'"there are so many rooms in this house i haven\'t built yet."'} />
                 </p>
                 <div className="mt-12 flex flex-col gap-4">
                     <Link

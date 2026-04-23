@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://raviolifortwo.com/sitemap.xml
+Sitemap: https://raviolifortwo.vercel.app/sitemap.xml

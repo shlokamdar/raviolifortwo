@@ -3,23 +3,26 @@
 import { useEffect, useState } from 'react';
 
 export function ReturningVisitor() {
+    const [mounted, setMounted] = useState(() => {
+        if (typeof window === 'undefined') return false;
+        const visited = localStorage.getItem('r2_visited');
+        if (visited) return true;
+        localStorage.setItem('r2_visited', 'true');
+        return false;
+    });
     const [visible, setVisible] = useState(false);
-    const [mounted, setMounted] = useState(false);
 
     useEffect(() => {
-        const visited = localStorage.getItem('r2_visited');
-        if (visited) {
-            setMounted(true);
-            // Small delay to trigger fade-in after mount
-            setTimeout(() => setVisible(true), 10);
-
-            // Hold for 3s (total 3.8s including fade in), then start fade out (2s)
-            setTimeout(() => setVisible(false), 3800);   // start fade
-            setTimeout(() => setMounted(false), 5800);   // remove from DOM
-        } else {
-            localStorage.setItem('r2_visited', 'true');
-        }
-    }, []);
+        if (!mounted) return;
+        const t1 = window.setTimeout(() => setVisible(true), 10);
+        const t2 = window.setTimeout(() => setVisible(false), 3800);
+        const t3 = window.setTimeout(() => setMounted(false), 5800);
+        return () => {
+            window.clearTimeout(t1);
+            window.clearTimeout(t2);
+            window.clearTimeout(t3);
+        };
+    }, [mounted]);
 
     if (!mounted) return null;
 
