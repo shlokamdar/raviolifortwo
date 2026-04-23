@@ -1,0 +1,103 @@
+import Link from "next/link";
+import { PageContainer } from "@/components/PageContainer";
+import { EyebrowLabel } from "@/components/EyebrowLabel";
+import { SectionBreak } from "@/components/SectionBreak";
+
+const shelfItems = [
+    {
+        id: "letters",
+        title: "letters",
+        description: "words i didn't send. or maybe i did, and i just wanted to keep a copy of the ghost they left behind.",
+        status: "active",
+        links: [
+            { label: "letters to robin →", href: "/archive?category=letters-to-robin" },
+            { label: "letters to peter →", href: "/archive?category=letters-to-peter" }
+        ]
+    },
+    {
+        id: "peter-poems",
+        title: "peter poems",
+        description: "a collection of fragments about a person who isn't here anymore.",
+        status: "active",
+        links: [{ label: "read the group →", href: "/archive?category=letters-to-peter" }]
+    },
+    {
+        id: "instagram-archive",
+        title: "instagram archive",
+        description: "poems from my teenage years. each one a fragment of a version of me i was still becoming.",
+        status: "active",
+        links: [{ label: "view the fragments →", href: "/archive?category=archives-from-instagram" }]
+    }
+];
+
+export default function ShelfPage() {
+    return (
+        <PageContainer maxWidth="reading">
+            <header className="mb-24">
+                <span className="eyebrow mb-4 block">the shelf</span>
+                <h1 className="font-display text-3xl text-[var(--color-ink)] mt-2 mb-6">
+                    collections
+                </h1>
+                <p className="font-body text-[0.95rem] text-[var(--color-ink-muted)] leading-relaxed max-w-[480px]">
+                    this is where i keep the books.
+                    grouped thoughts that wanted to stay together.
+                </p>
+            </header>
+
+            <div className="flex flex-col gap-16">
+                {shelfItems.map((item) => (
+                    <div key={item.id} className="group border-t border-[var(--color-border)] pt-12 flex flex-col md:flex-row gap-8 items-start">
+                        <div className="md:w-1/3">
+                            <span className="text-[0.6rem] font-body uppercase tracking-wider text-[var(--color-ink-faint)]">
+                                {item.status}
+                            </span>
+                            <h3 className="font-display text-xl text-[var(--color-ink)] mt-2 mb-4 group-hover:text-[var(--accent-general)] transition-colors">
+                                {item.title}
+                            </h3>
+                        </div>
+
+                        <div className="md:w-2/3">
+                            <p className="font-body text-[0.9rem] text-[var(--color-ink-muted)] leading-relaxed mb-6">
+                                {item.description}
+                            </p>
+
+                            <div className="flex flex-col gap-2">
+                                {item.links.map((link) => (
+                                    <Link
+                                        key={link.href}
+                                        href={link.href}
+                                        className="text-[0.8rem] font-body text-[var(--color-ink-muted)] hover:text-[var(--color-ink)] underline underline-offset-4 decoration-[var(--color-border)] hover:decoration-[var(--color-ink-muted)] transition-colors"
+                                    >
+                                        {link.label}
+                                    </Link>
+                                ))}
+                            </div>
+                        </div>
+                    </div>
+                ))}
+            </div>
+
+            <SectionBreak texture className="mt-32 mb-24" />
+
+            <section className="mb-24">
+                <p className="font-display text-[1rem] text-[var(--color-ink-faint)] mt-24">
+                    "there are so many rooms in this house i haven't built yet."
+                </p>
+                <div className="mt-12 flex flex-col gap-4">
+                    <Link
+                        href="/interactions"
+                        className="text-[0.85rem] font-body text-[var(--color-ink-muted)] hover:text-[var(--color-ink)] transition-colors underline underline-offset-4 decoration-[var(--color-border)]"
+                    >
+                        view small experiments &rarr;
+                    </Link>
+                    <Link
+                        href="/"
+                        className="text-[0.85rem] font-body text-[var(--color-ink-faint)] hover:text-[var(--color-ink-muted)] transition-colors underline underline-offset-4 decoration-[var(--color-border)]"
+                    >
+                        &larr; back to the room
+                    </Link>
+                </div>
+            </section>
+        </PageContainer>
+    );
+}
