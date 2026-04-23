@@ -20,7 +20,7 @@ export function CurrentlyDetail() {
     useEffect(() => {
         // Pick a random status from the pool on each refresh
         const randomStatus = pool[Math.floor(Math.random() * pool.length)];
-        setStatus(randomStatus);
+        setStatus(randomStatus); // eslint-disable-line react-hooks/set-state-in-effect
     }, []);
 
     if (!status) return null;

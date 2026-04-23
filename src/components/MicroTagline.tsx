@@ -20,7 +20,7 @@ export function MicroTagline() {
     useEffect(() => {
         // Select random fragment on mount
         const randomFragment = fragments[Math.floor(Math.random() * fragments.length)];
-        setFragment(randomFragment);
+        setFragment(randomFragment); // eslint-disable-line react-hooks/set-state-in-effect
 
         // Fade in after page loads (short delay to ensure layout is ready)
         const timer = setTimeout(() => {

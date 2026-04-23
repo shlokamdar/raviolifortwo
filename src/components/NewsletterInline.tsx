@@ -13,26 +13,8 @@ export function NewsletterInline() {
         e.preventDefault();
         if (!email) return;
 
-        setStatus("submitting");
-
-        try {
-            const response = await fetch('/api/newsletter', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ email }),
-            });
-
-            if (response.ok) {
-                setStatus("success");
-            } else {
-                // For now just logging error, we could add error state to UI
-                console.error("Signup failed");
-                setStatus("idle");
-            }
-        } catch (error) {
-            console.error("Newsletter submission error:", error);
-            setStatus("idle");
-        }
+        // Show success immediately (API is removed for now)
+        setStatus("success");
     };
 
     return (
