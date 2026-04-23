@@ -5,10 +5,11 @@ import { useState } from "react";
 export function TimeGreeting() {
     const [greeting] = useState(() => {
         const hour = new Date().getHours();
-        if (hour >= 5 && hour < 11) return "good morning. you're up early.";
-        if (hour >= 11 && hour < 17) return "afternoon. come in.";
-        if (hour >= 17 && hour < 21) return "settle in. it's evening.";
-        return "can't sleep either?";
+        if (hour >= 5 && hour < 11) return "good morning. come in.";
+        if (hour >= 11 && hour < 16) return "good afternoon. come in.";
+        if (hour >= 16 && hour < 21) return "good evening. come in.";
+        if (hour >= 21 && hour < 24) return "do you love night time too? come in.";
+        return "can't sleep either. come in.";
     });
 
     if (!greeting) return null;

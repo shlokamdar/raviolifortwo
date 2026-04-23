@@ -13,7 +13,8 @@ export function PoemCard({ poem, className }: PoemCardProps) {
         'archives-from-instagram': 'var(--accent-archive)',
         'letters-to-robin': 'var(--accent-robin)',
         'letters-to-peter': 'var(--accent-peter)',
-    }[poem.category] || 'var(--accent-general)';
+        'letters': 'var(--accent-robin)',
+    }[poem.category as string] || 'var(--accent-general)';
 
     return (
         <Link

@@ -7,6 +7,10 @@ import { ReturningVisitor } from "@/components/ReturningVisitor";
 import { TimeGreeting } from "@/components/TimeGreeting";
 import { RotatingPoem } from "@/components/RotatingPoem";
 import { DividerSprigSvg } from "@/components/ornaments/NotebookIllustrations";
+import { MicroTagline } from "@/components/MicroTagline";
+import { HeroBackground } from "@/components/HeroBackground";
+import { AmbientParticles } from "@/components/AmbientParticles";
+import { CurrentlyDetail } from "@/components/CurrentlyDetail";
 
 export default async function Home() {
   const allPoems = await getAllPoems();
@@ -21,12 +25,22 @@ export default async function Home() {
     <PageContainer maxWidth="reading">
       <ReturningVisitor />
       {/* Above the fold: Featured Fragment */}
-      <section className="mb-24 mt-12 md:mt-32">
-        <div className="flex flex-col gap-6">
-          <TimeGreeting />
-          <h1 className="font-display text-[clamp(1.8rem,4vw,2.5rem)] text-[var(--color-ink)] leading-[1.2] font-normal max-w-[500px]">
-            i notice too much. this is where it goes.
-          </h1>
+      <section className="mb-24 mt-12 md:mt-32 relative">
+        <HeroBackground />
+        <AmbientParticles />
+
+        <div className="flex flex-col gap-6 relative z-10">
+          <div className="flex justify-between items-start">
+            <TimeGreeting />
+            <CurrentlyDetail />
+          </div>
+
+          <div className="flex flex-col gap-2">
+            <h1 className="font-display text-[clamp(1.8rem,4vw,2.5rem)] text-[var(--color-ink)] leading-[1.2] font-normal max-w-[500px]">
+              i notice too much. this is where it goes.
+            </h1>
+            <MicroTagline />
+          </div>
 
           <div className="mt-8 pt-12 border-t border-[var(--color-border)]/10">
             <RotatingPoem poems={allPoems} />
