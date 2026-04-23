@@ -7,7 +7,6 @@ import { ReturningVisitor } from "@/components/ReturningVisitor";
 import { TimeGreeting } from "@/components/TimeGreeting";
 import { RotatingPoem } from "@/components/RotatingPoem";
 import { DividerSprigSvg } from "@/components/ornaments/NotebookIllustrations";
-import { MicroTagline } from "@/components/MicroTagline";
 import { HeroBackground } from "@/components/HeroBackground";
 import { AmbientParticles } from "@/components/AmbientParticles";
 import { CurrentlyDetail } from "@/components/CurrentlyDetail";
@@ -39,7 +38,6 @@ export default async function Home() {
             <h1 className="font-display text-[clamp(1.8rem,4vw,2.5rem)] text-[var(--color-ink)] leading-[1.2] font-normal max-w-[500px]">
               i notice too much. this is where it goes.
             </h1>
-            <MicroTagline />
           </div>
 
           <div className="mt-8 pt-12 border-t border-[var(--color-border)]/10">
