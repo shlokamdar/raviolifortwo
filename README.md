@@ -1,36 +1,43 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+## raviolifortwo
+
+**a room that remembers you.**
+
+raviolifortwo is not a poetry website. it’s a place people return to—organized like a home, not a menu.
+
+### rooms (routes)
+- **come in →**: `/`
+- **what i wrote →**: `/archive`
+- **letters i kept →**: `/letters`
+- **the shelf**: `/shelf`
+- **who i am →**: `/about`
+- **poems**: `/poems/[slug]`
 
 ## Getting Started
 
-First, run the development server:
+Install dependencies, then run the dev server:
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open `http://localhost:3000`.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### scripts
+```bash
+npm run dev
+npm run build
+npm run start
+npm run lint
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### notes
+- **porch light**: the site subtly shifts warmth by local time (no toggle).
+- **navigation tone**: labels are lowercase and carry arrows.
+- **stack**: Next.js (App Router) + Tailwind CSS v4.
 
-## Learn More
+## deployment
+Any Next.js hosting works (Vercel recommended).
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## development references
+- Next.js docs: https://nextjs.org/docs
