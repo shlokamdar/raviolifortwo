@@ -5,7 +5,6 @@ import { Poem } from "@/types/poem";
 import { PageContainer } from "@/components/PageContainer";
 import { PoemCard } from "@/components/PoemCard";
 import { motion, AnimatePresence } from "framer-motion";
-import { cn } from "@/lib/utils";
 
 interface ArchiveClientProps {
     initialPoems: Poem[];
@@ -34,43 +33,115 @@ export function ArchiveClient({ initialPoems }: ArchiveClientProps) {
 
     return (
         <PageContainer maxWidth="reading">
-            <header className="mb-20">
-                <span className="eyebrow block mb-2">what i wrote</span>
-                <h1 className="font-display text-4xl text-[var(--color-ink)]">archive</h1>
+            <header style={{ marginBottom: '48px' }}>
+                <span
+                    style={{
+                        display: 'block',
+                        fontFamily: 'var(--font-script)',
+                        fontSize: '0.88rem',
+                        color: 'var(--color-ink-faint)',
+                        marginBottom: '10px',
+                        transform: 'rotate(-0.6deg)',
+                    }}
+                >
+                    what i wrote
+                </span>
+                <h1
+                    style={{
+                        fontFamily: 'var(--font-display)',
+                        fontStyle: 'italic',
+                        fontWeight: 300,
+                        fontSize: 'clamp(2rem, 5vw, 2.8rem)',
+                        color: 'var(--color-ink)',
+                        lineHeight: 1.15,
+                    }}
+                >
+                    archive
+                </h1>
             </header>
 
-            <div className="mb-20">
-                {/* Primary filters — by feeling */}
-                <div className="flex flex-wrap gap-x-8 gap-y-4">
-                    {feelings.map((feeling) => (
-                        <button
-                            key={feeling}
-                            onClick={() => setActiveTag(feeling)}
-                            className={cn(
-                                "text-[0.75rem] font-body tracking-wide transition-all duration-200 decoration-[var(--color-border)] hover:decoration-[var(--color-ink-muted)]",
-                                activeTag === feeling
-                                    ? "text-[var(--color-ink)] underline underline-offset-8"
-                                    : "text-[var(--color-ink-faint)] hover:text-[var(--color-ink-muted)]"
-                            )}
-                        >
-                            {feeling.toLowerCase()}
-                        </button>
-                    ))}
+            {/* Filters — like index tabs in a journal */}
+            <div style={{ marginBottom: '52px' }}>
+                {/* Feeling filters */}
+                <div
+                    className="paper-scrap relative px-5 py-5"
+                    style={{ transform: 'rotate(-0.3deg)', marginBottom: '24px' }}
+                >
+                    <div
+                        aria-hidden="true"
+                        style={{
+                            position: 'absolute', top: '-9px', left: '20px',
+                            width: '44px', height: '16px',
+                            background: 'rgba(220,200,160,0.50)', borderRadius: '1px',
+                        }}
+                    />
+                    <span
+                        style={{
+                            display: 'block',
+                            fontFamily: 'var(--font-script)',
+                            fontSize: '0.72rem',
+                            color: 'var(--color-ink-faint)',
+                            marginBottom: '12px',
+                            letterSpacing: '0.04em',
+                        }}
+                    >
+                        by feeling
+                    </span>
+                    <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px 20px' }}>
+                        {feelings.map((feeling) => (
+                            <button
+                                key={feeling}
+                                onClick={() => setActiveTag(feeling)}
+                                style={{
+                                    fontFamily: 'var(--font-script)',
+                                    fontSize: '0.9rem',
+                                    color: activeTag === feeling ? 'var(--color-ink)' : 'var(--color-ink-faint)',
+                                    background: 'none',
+                                    border: 'none',
+                                    padding: '2px 0',
+                                    cursor: 'pointer',
+                                    textDecoration: activeTag === feeling ? 'underline' : 'none',
+                                    textDecorationColor: 'rgba(120,100,76,0.4)',
+                                    textUnderlineOffset: '4px',
+                                    transition: 'color 400ms ease',
+                                    letterSpacing: '0.01em',
+                                }}
+                            >
+                                {feeling.toLowerCase()}
+                            </button>
+                        ))}
+                    </div>
                 </div>
 
-                {/* Secondary filters — by collection */}
-                <div className="flex flex-wrap gap-x-6 gap-y-2 mt-12 pt-8 border-t border-[var(--color-border)]/10">
-                    <span className="text-[0.65rem] font-body text-[var(--color-ink-faint)] mr-2">collections /</span>
+                {/* Collection filters */}
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '4px 16px', alignItems: 'center', marginLeft: '4px' }}>
+                    <span
+                        style={{
+                            fontFamily: 'var(--font-script)',
+                            fontSize: '0.72rem',
+                            color: 'var(--color-ink-faint)',
+                            marginRight: '4px',
+                        }}
+                    >
+                        from /
+                    </span>
                     {sources.map((source) => (
                         <button
                             key={source.id}
                             onClick={() => setActiveCategory(source.id)}
-                            className={cn(
-                                "text-[0.65rem] font-body transition-all duration-200",
-                                activeCategory === source.id
-                                    ? "text-[var(--color-ink)] underline underline-offset-4 decoration-[var(--color-border)]"
-                                    : "text-[var(--color-ink-faint)] hover:text-[var(--color-ink-muted)]"
-                            )}
+                            style={{
+                                fontFamily: 'var(--font-script)',
+                                fontSize: '0.8rem',
+                                color: activeCategory === source.id ? 'var(--color-ink-muted)' : 'var(--color-ink-faint)',
+                                background: 'none',
+                                border: 'none',
+                                padding: '2px 0',
+                                cursor: 'pointer',
+                                textDecoration: activeCategory === source.id ? 'underline' : 'none',
+                                textDecorationColor: 'rgba(120,100,76,0.3)',
+                                textUnderlineOffset: '4px',
+                                transition: 'color 300ms ease',
+                            }}
                         >
                             {source.label}
                         </button>
@@ -78,38 +149,83 @@ export function ArchiveClient({ initialPoems }: ArchiveClientProps) {
                 </div>
             </div>
 
-            {/* Anthology Preface */}
+            {/* Instagram archives note */}
             {activeCategory === "archives-from-instagram" && (
-                <div className="max-w-xl text-left border-y border-[var(--color-border)] py-6 mb-10">
-                    <p className="font-display text-[0.85rem] text-[var(--color-ink-muted)] mb-2">
-                        — archives from instagram
-                    </p>
-                    <p className="font-body text-[0.9rem] text-[var(--color-ink-muted)] leading-relaxed">
+                <div
+                    className="paper-scrap px-6 py-5 relative"
+                    style={{
+                        transform: 'rotate(0.5deg)',
+                        maxWidth: '420px',
+                        marginBottom: '36px',
+                    }}
+                >
+                    <div
+                        aria-hidden="true"
+                        style={{
+                            position: 'absolute', top: '-9px', right: '20px',
+                            width: '40px', height: '15px',
+                            background: 'rgba(160,190,160,0.46)', borderRadius: '1px',
+                        }}
+                    />
+                    <p
+                        style={{
+                            fontFamily: 'var(--font-display)',
+                            fontStyle: 'italic',
+                            fontSize: '0.88rem',
+                            color: 'var(--color-ink-muted)',
+                            lineHeight: 1.65,
+                        }}
+                    >
                         &quot;these are poems from my teenage years. each one a fragment of a version of me i was still becoming.&quot;
                     </p>
                 </div>
             )}
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start archive-grid">
+            {/* Grid — scattered, slightly off-alignment */}
+            <div
+                className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-14 archive-grid"
+                style={{ alignItems: 'start' }}
+            >
                 <AnimatePresence mode="popLayout">
-                    {filteredPoems.map((poem) => (
+                    {filteredPoems.map((poem, i) => (
                         <motion.div
                             key={poem.slug}
                             layout
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            exit={{ opacity: 0.3 }}
-                            transition={{ duration: 0.2 }}
+                            initial={{ opacity: 0, y: 10 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={{ opacity: 0 }}
+                            transition={{ duration: 0.5, ease: [0.25, 0, 0, 1] }}
+                            style={{ marginTop: i % 3 === 1 ? '24px' : i % 3 === 2 ? '8px' : 0 }}
                         >
-                            <PoemCard poem={poem} className="hover:-translate-y-[4px]" />
+                            <PoemCard poem={poem} />
                         </motion.div>
                     ))}
                 </AnimatePresence>
             </div>
 
             {filteredPoems.length === 0 && (
-                <div className="py-24">
-                    <p className="font-body text-[var(--color-ink-faint)] text-lg">nothing found in this shelf.</p>
+                <div
+                    className="paper-scrap inline-block px-6 py-6 relative"
+                    style={{ transform: 'rotate(-0.8deg)', marginTop: '32px' }}
+                >
+                    <div
+                        aria-hidden="true"
+                        style={{
+                            position: 'absolute', top: '-9px', left: '20px',
+                            width: '40px', height: '15px',
+                            background: 'rgba(220,200,160,0.48)', borderRadius: '1px',
+                        }}
+                    />
+                    <p
+                        style={{
+                            fontFamily: 'var(--font-display)',
+                            fontStyle: 'italic',
+                            color: 'var(--color-ink-faint)',
+                            fontSize: '0.95rem',
+                        }}
+                    >
+                        nothing found in this shelf.
+                    </p>
                 </div>
             )}
         </PageContainer>

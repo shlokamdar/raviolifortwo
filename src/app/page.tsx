@@ -6,7 +6,6 @@ import { NewsletterInline } from "@/components/NewsletterInline";
 import { ReturningVisitor } from "@/components/ReturningVisitor";
 import { TimeGreeting } from "@/components/TimeGreeting";
 import { RotatingPoem } from "@/components/RotatingPoem";
-import { DividerSprigSvg } from "@/components/ornaments/NotebookIllustrations";
 import { HeroBackground } from "@/components/HeroBackground";
 import { AmbientParticles } from "@/components/AmbientParticles";
 import { CurrentlyDetail } from "@/components/CurrentlyDetail";
@@ -14,87 +13,220 @@ import { CurrentlyDetail } from "@/components/CurrentlyDetail";
 export default async function Home() {
   const allPoems = await getAllPoems();
 
-  // Recent poems (latest 2)
   const recentPoems = allPoems.slice(0, 2);
-
-  // Archived (rest)
   const archivedPoems = allPoems.slice(2);
 
   return (
     <PageContainer maxWidth="reading">
       <ReturningVisitor />
-      {/* Above the fold: Featured Fragment */}
-      <section className="mb-24 mt-0 relative">
+
+      {/* ── Hero: slightly off-center, like notes scattered on a desk ── */}
+      <section className="mb-28 mt-0 relative" style={{ marginLeft: '-4px' }}>
         <HeroBackground />
         <AmbientParticles />
 
-        <div className="flex flex-col gap-6 relative z-10">
-          <div className="flex flex-col mb-4">
+        <div className="flex flex-col gap-7 relative z-10">
+
+          {/* Time greeting — small handwritten note */}
+          <div
+            className="paper-scrap inline-block px-4 py-2 self-start"
+            style={{
+              transform: 'rotate(-1.4deg)',
+              position: 'relative',
+              maxWidth: '260px',
+            }}
+          >
+            {/* little tape piece */}
+            <div
+              aria-hidden="true"
+              style={{
+                position: 'absolute', top: '-9px', left: '18px',
+                width: '40px', height: '16px',
+                background: 'rgba(220,200,160,0.55)', borderRadius: '1px',
+                transform: 'rotate(-0.5deg)',
+              }}
+            />
             <TimeGreeting />
             <CurrentlyDetail />
           </div>
 
-          <div className="flex flex-col gap-2">
-            <h1 className="font-display text-[clamp(1.8rem,4vw,2.5rem)] text-[var(--color-ink)] leading-[1.2] font-normal max-w-[500px]">
-              i notice too much. this is where it goes.
+          {/* Main headline — serif, left, breathing */}
+          <div style={{ marginLeft: '2px', marginTop: '16px' }}>
+            <h1
+              style={{
+                fontFamily: 'var(--font-display)',
+                fontStyle: 'italic',
+                fontSize: 'clamp(1.75rem, 4vw, 2.4rem)',
+                fontWeight: 300,
+                color: 'var(--color-ink)',
+                lineHeight: 1.25,
+                maxWidth: '480px',
+                letterSpacing: '-0.01em',
+              }}
+            >
+              i notice too much.<br />
+              this is where it goes.
             </h1>
           </div>
 
-          <div className="mt-8 pt-12 border-t border-[var(--color-border)]/10">
+          {/* Rotating poem — like a note pinned to the page */}
+          <div
+            style={{
+              marginTop: '32px',
+              marginLeft: '8px',
+              paddingTop: '28px',
+              borderTop: '1px dashed rgba(120,100,76,0.18)',
+              position: 'relative',
+            }}
+          >
+            {/* tiny label */}
+            <span
+              aria-hidden="true"
+              style={{
+                position: 'absolute',
+                top: '-10px',
+                left: '12px',
+                fontFamily: 'var(--font-script)',
+                fontSize: '0.72rem',
+                color: 'var(--color-ink-faint)',
+                background: 'var(--color-canvas)',
+                padding: '0 6px',
+              }}
+            >
+              from the pages
+            </span>
             <RotatingPoem poems={allPoems} />
           </div>
         </div>
       </section>
 
-      {/* Reduced bottom margin from 64px (mb-16) to Recently section */}
-      <div className="my-10 flex items-center justify-center">
-        <DividerSprigSvg
-          aria-hidden="true"
-          className="w-[260px] md:w-[340px] h-auto opacity-55"
-          strokeColor="var(--accent-general)"
-        />
-      </div>
+      {/* ── Section divider ── */}
+      <div className="section-divider" style={{ margin: '0 0 2.5rem' }} />
 
-      {/* Recently */}
-      <section className="mb-[72px]">
-        <div className="mb-8 border-t border-[var(--color-border)] pt-4">
-          <span className="text-[0.65rem] font-body uppercase tracking-[0.15em] text-[var(--color-ink-faint)]">recently</span>
+      {/* ── Recently — cards in a slight stagger ── */}
+      <section className="mb-20">
+        <div className="mb-10" style={{ marginLeft: '4px' }}>
+          <span
+            className="scrap-label"
+            style={{ transform: 'rotate(-0.8deg)', display: 'inline-block' }}
+          >
+            recently written
+          </span>
+          {/* hand-underline */}
+          <div style={{
+            height: '1px',
+            width: '90px',
+            background: 'rgba(120,100,76,0.20)',
+            marginTop: '4px',
+            borderRadius: '2px',
+          }} />
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {recentPoems.map((poem) => (
-            <PoemCard key={poem.slug} poem={poem} />
+
+        {/* Staggered grid — slight asymmetry */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-14" style={{ alignItems: 'start' }}>
+          {recentPoems.map((poem, i) => (
+            <PoemCard
+              key={poem.slug}
+              poem={poem}
+              className={i === 1 ? "md:mt-8" : ""}
+            />
           ))}
         </div>
       </section>
 
+      {/* ── Section divider ── */}
+      <div className="section-divider" />
 
-      {/* From the archive */}
+      {/* ── From the archive ── */}
       {archivedPoems.length > 0 && (
-        <section className="mb-[80px]">
-          <div className="mb-8 border-t border-[var(--color-border)] pt-4">
-            <span className="text-[0.65rem] font-body uppercase tracking-[0.15em] text-[var(--color-ink-faint)]">from the archive</span>
+        <section className="mb-20">
+          <div className="mb-10" style={{ marginLeft: '6px' }}>
+            <span
+              className="scrap-label"
+              style={{ transform: 'rotate(0.5deg)', display: 'inline-block' }}
+            >
+              from the archive
+            </span>
+            <div style={{
+              height: '1px',
+              width: '70px',
+              background: 'rgba(120,100,76,0.15)',
+              marginTop: '4px',
+              borderRadius: '2px',
+              marginLeft: '4px',
+            }} />
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
-            {archivedPoems.map((poem) => (
-              <PoemCard key={poem.slug} poem={poem} />
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-14" style={{ alignItems: 'start' }}>
+            {archivedPoems.map((poem, i) => (
+              <PoemCard
+                key={poem.slug}
+                poem={poem}
+                className={i % 3 === 1 ? "md:mt-6" : i % 3 === 2 ? "md:mt-12" : ""}
+              />
             ))}
           </div>
         </section>
       )}
 
-      {/* Shelf section */}
+      {/* ── The Shelf ── */}
       <section className="my-20">
-        <div className="mb-6 border-t border-[var(--color-border)] pt-4">
-          <span className="text-[0.65rem] font-body uppercase tracking-[0.15em] text-[var(--color-ink-faint)]">the shelf</span>
+        <div
+          className="paper-scrap inline-block px-5 py-4 relative"
+          style={{ transform: 'rotate(1deg)', maxWidth: '280px' }}
+        >
+          <div
+            aria-hidden="true"
+            style={{
+              position: 'absolute', top: '-9px', right: '20px',
+              width: '44px', height: '16px',
+              background: 'rgba(160,190,160,0.5)', borderRadius: '1px',
+              transform: 'rotate(0.8deg)',
+            }}
+          />
+          <span
+            className="scrap-label"
+            style={{ display: 'block', marginBottom: '8px' }}
+          >
+            the shelf
+          </span>
+          <Link
+            href="/shelf"
+            style={{
+              fontFamily: 'var(--font-display)',
+              fontSize: '0.88rem',
+              color: 'var(--color-ink-muted)',
+              textDecoration: 'underline',
+              textDecorationColor: 'rgba(120,100,76,0.28)',
+              textUnderlineOffset: '4px',
+            }}
+          >
+            view collections →
+          </Link>
         </div>
-        <Link href="/shelf" className="font-body text-[0.9rem] text-[var(--color-ink-muted)] hover:text-[var(--color-ink)] transition-colors underline underline-offset-4">
-          view collections &rarr;
-        </Link>
       </section>
 
-      {/* Footer / Newsletter */}
-      <section style={{ marginTop: '80px' }} className="pb-24">
-        <NewsletterInline />
+      {/* ── Newsletter ── */}
+      <section style={{ marginTop: '80px', marginBottom: '40px' }}>
+        <div
+          className="paper-scrap px-7 py-8 relative"
+          style={{
+            transform: 'rotate(-0.4deg)',
+            maxWidth: '440px',
+          }}
+        >
+          {/* Tape top */}
+          <div
+            aria-hidden="true"
+            style={{
+              position: 'absolute', top: '-10px', left: '50%',
+              transform: 'translateX(-50%) rotate(-0.5deg)',
+              width: '58px', height: '19px',
+              background: 'rgba(200,180,180,0.50)', borderRadius: '1px',
+            }}
+          />
+          <NewsletterInline />
+        </div>
       </section>
     </PageContainer>
   );

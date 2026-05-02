@@ -3,14 +3,18 @@
 import { useEffect, useState } from 'react';
 
 export function ReturningVisitor() {
-    const [mounted, setMounted] = useState(() => {
-        if (typeof window === 'undefined') return false;
-        const visited = localStorage.getItem('r2_visited');
-        if (visited) return true;
-        localStorage.setItem('r2_visited', 'true');
-        return false;
-    });
+    const [mounted, setMounted] = useState(false);
     const [visible, setVisible] = useState(false);
+
+    useEffect(() => {
+        const visited = localStorage.getItem('r2_visited');
+        if (visited) {
+            const t = window.setTimeout(() => setMounted(true), 0);
+            return () => window.clearTimeout(t);
+        }
+
+        localStorage.setItem('r2_visited', 'true');
+    }, []);
 
     useEffect(() => {
         if (!mounted) return;

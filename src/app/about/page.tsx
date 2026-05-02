@@ -12,128 +12,242 @@ import {
 export default function AboutPage() {
     return (
         <PageContainer maxWidth="about">
-            <header className="mb-20">
-                <span className="eyebrow block">who i am</span>
+            {/* Page header — handwritten label */}
+            <header style={{ marginBottom: '48px', marginLeft: '4px' }}>
+                <span
+                    style={{
+                        fontFamily: 'var(--font-script)',
+                        fontSize: '1.1rem',
+                        color: 'var(--color-ink-faint)',
+                        transform: 'rotate(-0.8deg)',
+                        display: 'inline-block',
+                        letterSpacing: '0.03em',
+                    }}
+                >
+                    who i am
+                </span>
             </header>
 
-            <article className="relative mb-24 max-w-[560px]">
+            <article className="relative mb-24" style={{ maxWidth: '560px' }}>
                 <div
                     aria-hidden="true"
-                    className="absolute inset-0 -z-10 watercolor-layer opacity-70 rounded-[var(--radius-cozy)]"
+                    className="absolute inset-0 -z-10 watercolor-layer opacity-60 rounded-sm"
                     style={{ filter: "blur(0px)" }}
                 />
                 <DustSpecks className="absolute inset-0 -z-10 opacity-80" />
 
-                {/* scattered notebook illustrations */}
+                {/* Scattered notebook illustrations */}
                 <TeaCupSvg
                     aria-hidden="true"
                     className="absolute -z-10 hidden sm:block"
-                    style={{
-                        width: 120,
-                        height: 120,
-                        left: -46,
-                        top: 64,
-                        opacity: 0.35,
-                    }}
+                    style={{ width: 110, height: 110, left: -40, top: 56, opacity: 0.28 }}
                 />
                 <CandleSvg
                     aria-hidden="true"
                     className="absolute -z-10 hidden md:block"
-                    style={{
-                        width: 120,
-                        height: 140,
-                        right: -54,
-                        top: 190,
-                        opacity: 0.32,
-                    }}
+                    style={{ width: 110, height: 130, right: -48, top: 180, opacity: 0.25 }}
                 />
                 <LeafSvg
                     aria-hidden="true"
                     className="absolute -z-10 hidden sm:block"
-                    style={{
-                        width: 110,
-                        height: 110,
-                        right: -42,
-                        top: 28,
-                        opacity: 0.26,
-                        transform: "rotate(8deg)",
-                    }}
+                    style={{ width: 100, height: 100, right: -38, top: 22, opacity: 0.20, transform: "rotate(8deg)" }}
                 />
                 <WindowSvg
                     aria-hidden="true"
                     className="absolute -z-10 hidden md:block"
-                    style={{
-                        width: 140,
-                        height: 140,
-                        left: -56,
-                        bottom: 90,
-                        opacity: 0.22,
-                        transform: "rotate(-3deg)",
-                    }}
+                    style={{ width: 130, height: 130, left: -50, bottom: 80, opacity: 0.18, transform: "rotate(-3deg)" }}
                 />
 
-                <div className="font-display text-[1.15rem] text-[var(--color-ink)] leading-[1.85] space-y-10">
-                    <section className="rounded-[var(--radius-cozy)] bg-[var(--color-surface)] border border-[var(--color-border)] shadow-[var(--shadow-soft)] px-6 py-6 md:px-7 md:py-7">
+                {/* Content blocks — each like a separate paper fragment */}
+                <div
+                    style={{
+                        fontFamily: 'var(--font-display)',
+                        fontSize: '1.1rem',
+                        color: 'var(--color-ink)',
+                        lineHeight: 1.9,
+                        display: 'flex',
+                        flexDirection: 'column',
+                        gap: '28px',
+                    }}
+                >
+                    {/* Fragment 1 */}
+                    <div
+                        className="paper-scrap px-6 py-6 md:px-7 md:py-7 relative"
+                        style={{ transform: 'rotate(-1.1deg)' }}
+                    >
+                        <div
+                            aria-hidden="true"
+                            style={{
+                                position: 'absolute', top: '-9px', left: '20px',
+                                width: '48px', height: '17px',
+                                background: 'rgba(220,200,160,0.52)', borderRadius: '1px',
+                                transform: 'rotate(-0.6deg)',
+                            }}
+                        />
                         <p>
                             i spend a lot of time noticing things<br />
                             the way light sits on the floor for a while before leaving<br />
-                            how coffee tastes different depending on who i’m thinking about<br />
+                            how coffee tastes different depending on who {`i'm`} thinking about<br />
                             how some days feel too full, and some feel like an empty room
                         </p>
-                    </section>
+                    </div>
 
-                    <section className="rounded-[var(--radius-cozy)] bg-[var(--color-surface)] border border-[var(--color-border)] shadow-[var(--shadow-soft)] px-6 py-6 md:px-7 md:py-7">
+                    {/* Fragment 2 */}
+                    <div
+                        className="paper-scrap px-6 py-6 md:px-7 md:py-7 relative"
+                        style={{ transform: 'rotate(0.7deg)', marginLeft: '8px' }}
+                    >
+                        <div
+                            aria-hidden="true"
+                            style={{
+                                position: 'absolute', top: '-9px', right: '24px',
+                                width: '40px', height: '16px',
+                                background: 'rgba(200,180,180,0.48)', borderRadius: '1px',
+                                transform: 'rotate(1deg)',
+                            }}
+                        />
                         <p>
                             i think poems are just ways of saying<br />
-                            <em className="italic block text-center text-[clamp(1.55rem,3.2vw,1.85rem)] leading-tight tracking-tight my-3 text-[var(--accent-general)]">
+                            <em
+                                style={{
+                                    display: 'block',
+                                    textAlign: 'center',
+                                    fontSize: 'clamp(1.5rem, 3vw, 1.8rem)',
+                                    lineHeight: 1.2,
+                                    margin: '16px 0',
+                                    color: 'var(--accent-general)',
+                                    fontStyle: 'italic',
+                                    letterSpacing: '-0.01em',
+                                }}
+                            >
                                 i was here
                             </em>
-                            to moments that don’t stay long enough
+                            to moments that {`don't`} stay long enough
                         </p>
-                    </section>
+                    </div>
 
-                    <section className="rounded-[var(--radius-cozy)] bg-[var(--color-surface)] border border-[var(--color-border)] shadow-[var(--shadow-soft)] px-6 py-6 md:px-7 md:py-7">
+                    {/* Fragment 3 */}
+                    <div
+                        className="paper-scrap px-6 py-6 md:px-7 md:py-7 relative"
+                        style={{ transform: 'rotate(-0.5deg)', marginLeft: '-4px' }}
+                    >
+                        <div
+                            aria-hidden="true"
+                            style={{
+                                position: 'absolute', top: '-9px', left: '32px',
+                                width: '52px', height: '18px',
+                                background: 'rgba(160,190,160,0.48)', borderRadius: '1px',
+                                transform: 'rotate(-1.2deg)',
+                            }}
+                        />
                         <p>
                             raviolifortwo started on a quiet afternoon<br />
                             the kind where nothing happens<br />
                             but everything feels like it almost could
                         </p>
-                    </section>
+                    </div>
 
-                    <section className="rounded-[var(--radius-cozy)] bg-[var(--color-surface)] border border-[var(--color-border)] shadow-[var(--shadow-soft)] px-6 py-6 md:px-7 md:py-7">
+                    {/* Fragment 4 */}
+                    <div
+                        className="paper-scrap px-6 py-6 md:px-7 md:py-7 relative"
+                        style={{ transform: 'rotate(0.9deg)', marginLeft: '12px' }}
+                    >
+                        <div
+                            aria-hidden="true"
+                            style={{
+                                position: 'absolute', top: '-9px', right: '18px',
+                                width: '44px', height: '16px',
+                                background: 'rgba(180,190,210,0.45)', borderRadius: '1px',
+                                transform: 'rotate(0.5deg)',
+                            }}
+                        />
                         <p>
-                            it became a place for things that {"don't"} fit anywhere else<br />
+                            it became a place for things that {`don't`} fit anywhere else<br />
                             not quite conversations, not quite silence<br />
                             just something in between
                         </p>
-                    </section>
+                    </div>
 
-                    <section className="rounded-[var(--radius-cozy)] bg-[var(--color-surface)] border border-[var(--color-border)] shadow-[var(--shadow-soft)] px-6 py-6 md:px-7 md:py-7">
+                    {/* Fragment 5 */}
+                    <div
+                        className="paper-scrap px-6 py-6 md:px-7 md:py-7 relative"
+                        style={{ transform: 'rotate(-0.6deg)' }}
+                    >
+                        <div
+                            aria-hidden="true"
+                            style={{
+                                position: 'absolute', top: '-9px', left: '28px',
+                                width: '50px', height: '17px',
+                                background: 'rgba(220,200,160,0.50)', borderRadius: '1px',
+                                transform: 'rotate(-0.8deg)',
+                            }}
+                        />
                         <p>
-                            i don’t always know who i’m writing to<br />
+                            i {`don't`} always know who {`i'm`} writing to<br />
                             but it feels like leaving the door open<br />
                             in case someone arrives<br />
                             looking for the same thing
                         </p>
-                    </section>
+                    </div>
 
+                    {/* Closing — revealed on scroll */}
                     <RevealOnScroll offsetY={12}>
-                        <p className="pt-10 italic text-[1rem] text-[var(--color-ink-muted)] text-center">
+                        <p
+                            style={{
+                                paddingTop: '32px',
+                                fontStyle: 'italic',
+                                fontSize: '1rem',
+                                color: 'var(--color-ink-muted)',
+                                textAlign: 'center',
+                                transform: 'rotate(-0.4deg)',
+                                display: 'block',
+                            }}
+                        >
                             stay as long as you need<br />
                             the tea is still warm
                         </p>
                     </RevealOnScroll>
 
-                    <div className="pt-12 text-[0.85rem] text-[var(--color-ink-faint)] tracking-widest uppercase">
+                    {/* Signature */}
+                    <div
+                        style={{
+                            paddingTop: '20px',
+                            fontFamily: 'var(--font-script)',
+                            fontSize: '1.1rem',
+                            color: 'var(--color-ink-faint)',
+                            transform: 'rotate(-0.5deg)',
+                            display: 'inline-block',
+                            marginLeft: '4px',
+                        }}
+                    >
                         — Shloka Kamadar
                     </div>
                 </div>
             </article>
 
-            <footer className="mt-32 pb-24 border-t border-[var(--color-border)] pt-12">
-                <nav className="flex flex-col gap-4">
-                    <Link href="/" className="text-[0.85rem] font-body text-[var(--color-ink-muted)] hover:text-[var(--color-ink)] transition-colors underline underline-offset-4 decoration-[var(--color-border)]">
-                        &larr; take me back
+            <footer
+                style={{
+                    marginTop: '64px',
+                    paddingBottom: '80px',
+                    paddingTop: '28px',
+                    borderTop: '1px dashed rgba(120,100,76,0.16)',
+                }}
+            >
+                <nav>
+                    <Link
+                        href="/"
+                        style={{
+                            fontFamily: 'var(--font-script)',
+                            fontSize: '0.95rem',
+                            color: 'var(--color-ink-faint)',
+                            textDecoration: 'underline',
+                            textDecorationColor: 'rgba(120,100,76,0.22)',
+                            textUnderlineOffset: '4px',
+                            display: 'inline-block',
+                            transform: 'rotate(-0.4deg)',
+                        }}
+                    >
+                        ← take me back
                     </Link>
                 </nav>
             </footer>

@@ -22,7 +22,6 @@ export function RotatingPoem({ poems }: RotatingPoemProps) {
 
     if (!randomPoem) return null;
 
-    // Get the first few lines of the poem for the excerpt
     const excerpt = randomPoem.fullPoem
         .split('\n')
         .filter(line => line.trim().length > 0)
@@ -30,21 +29,83 @@ export function RotatingPoem({ poems }: RotatingPoemProps) {
         .join('\n');
 
     return (
-        <div className="max-w-[420px] opacity-0 animate-fade-in fill-mode-forwards" style={{ animationDelay: '400ms' }}>
-            <div className="mb-8 border-l border-[var(--color-border)] pl-6 py-1">
-                <blockquote className="font-display italic text-[1.1rem] text-[var(--color-ink)] leading-relaxed whitespace-pre-line mb-4">
+        <div
+            className="opacity-0 animate-fade-in fill-mode-forwards"
+            style={{ animationDelay: '500ms', maxWidth: '400px', position: 'relative' }}
+        >
+            {/* Paper fragment for the quote */}
+            <div
+                className="paper-scrap relative px-6 py-6"
+                style={{ transform: 'rotate(0.8deg)' }}
+            >
+                {/* Tape */}
+                <div
+                    aria-hidden="true"
+                    style={{
+                        position: 'absolute', top: '-10px', left: '50%',
+                        transform: 'translateX(-50%) rotate(-1.2deg)',
+                        width: '52px', height: '18px',
+                        background: 'rgba(220,200,160,0.50)',
+                        borderRadius: '1px',
+                    }}
+                />
+
+                {/* Quote mark */}
+                <span
+                    aria-hidden="true"
+                    style={{
+                        fontFamily: 'var(--font-display)',
+                        fontSize: '2.5rem',
+                        color: 'var(--color-ink-faint)',
+                        lineHeight: 1,
+                        display: 'block',
+                        marginBottom: '-8px',
+                        opacity: 0.35,
+                    }}
+                >
+                    &ldquo;
+                </span>
+
+                <blockquote
+                    style={{
+                        fontFamily: 'var(--font-display)',
+                        fontStyle: 'italic',
+                        fontSize: '1.05rem',
+                        color: 'var(--color-ink)',
+                        lineHeight: 1.85,
+                        whiteSpace: 'pre-line',
+                        marginBottom: '18px',
+                        fontWeight: 300,
+                    }}
+                >
                     {excerpt}
                 </blockquote>
 
-                <div className="flex items-center gap-4">
-                    <cite className="font-body text-[0.7rem] text-[var(--color-ink-faint)] tracking-wider uppercase not-italic">
+                <div style={{ display: 'flex', alignItems: 'center', gap: '14px' }}>
+                    <cite
+                        style={{
+                            fontFamily: 'var(--font-script)',
+                            fontSize: '0.78rem',
+                            color: 'var(--color-ink-faint)',
+                            fontStyle: 'normal',
+                            letterSpacing: '0.02em',
+                        }}
+                    >
                         — from {randomPoem.title.toLowerCase()}
                     </cite>
                     <Link
                         href={`/poems/${randomPoem.slug}`}
-                        className="text-[0.75rem] font-body text-[var(--color-ink-muted)] hover:text-[var(--color-ink)] transition-colors underline underline-offset-4 decoration-[var(--color-border)]"
+                        style={{
+                            fontFamily: 'var(--font-script)',
+                            fontSize: '0.82rem',
+                            color: 'var(--color-ink-muted)',
+                            textDecoration: 'underline',
+                            textDecorationColor: 'rgba(120,100,76,0.25)',
+                            textUnderlineOffset: '3px',
+                            transition: 'color 400ms ease',
+                        }}
                     >
-                        read &rarr;
+                        read →
                     </Link>
                 </div>
             </div>
