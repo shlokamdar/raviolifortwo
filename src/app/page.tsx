@@ -17,11 +17,11 @@ export default async function Home() {
   const archivedPoems = allPoems.slice(2);
 
   return (
-    <PageContainer maxWidth="reading">
+    <PageContainer maxWidth="archive">
       <ReturningVisitor />
 
-      {/* ── Hero: slightly off-center, like notes scattered on a desk ── */}
-      <section className="mb-28 mt-0 relative" style={{ marginLeft: '-4px' }}>
+      {/* ── Hero: left-aligned with grid, slightly moved up ── */}
+      <section className="mb-28 relative" style={{ marginTop: '-20px', marginLeft: '1.5rem' }}>
         <HeroBackground />
         <AmbientParticles />
 
@@ -51,13 +51,13 @@ export default async function Home() {
           </div>
 
           {/* Main headline — serif, left, breathing */}
-          <div style={{ marginLeft: '2px', marginTop: '16px' }}>
+          <div style={{ marginLeft: '-4px', marginTop: '16px' }}>
             <h1
               style={{
                 fontFamily: 'var(--font-display)',
                 fontStyle: 'italic',
-                fontSize: 'clamp(1.75rem, 4vw, 2.4rem)',
-                fontWeight: 300,
+                fontSize: 'clamp(2rem, 5vw, 3rem)',
+                fontWeight: 400,
                 color: 'var(--color-ink)',
                 lineHeight: 1.25,
                 maxWidth: '480px',

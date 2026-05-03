@@ -212,6 +212,24 @@ h1, h2, h3 {
   letter-spacing: 0.01em;
 }
 
+.nav-link-custom .hover-underline {
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: var(--accent-general);
+  opacity: 0;
+  transform: translateY(2px);
+  transition: all 0.2s ease;
+}
+
+.nav-link-custom:hover .hover-underline,
+.nav-link-custom:focus-visible .hover-underline {
+  opacity: 0.6;
+  transform: translateY(0);
+}
+
 /* Handwritten: Caveat — used ONLY for tiny annotations, read-links */
 .text-handwritten {
   font-family: var(--font-handwritten);

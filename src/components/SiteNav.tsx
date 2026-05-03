@@ -50,21 +50,21 @@ export function SiteNav() {
                 }}
             >
                 {/* Inner wrapper — constrains content width, centred */}
-                <div className="flex justify-between items-center mx-auto px-6 md:px-10 py-4 md:py-5" style={{ maxWidth: '800px' }}>
+                <div className="flex justify-between items-center mx-auto px-6" style={{ maxWidth: '1100px' }}>
                 {/* Logo — the PNG */}
-                <div className="pointer-events-auto" style={{ transform: 'rotate(-0.9deg)', paddingTop: '2px' }}>
+                <div className="pointer-events-auto shrink-0" style={{ transform: 'rotate(-0.9deg)', paddingLeft: '2rem', paddingTop: '1.5rem' }}>
                     <Link href="/" aria-label="raviolifortwo home">
                         <Image
                             src="/ransomizer.com.png"
                             alt="raviolifortwo"
-                            width={158}
-                            height={49}
+                            width={237}
+                            height={73}
                             style={{
                                 objectFit: 'contain',
                                 objectPosition: 'left center',
                                 width: 'auto',
                                 height: 'auto',
-                                filter: 'sepia(0.18) saturate(1.28) contrast(1.06) drop-shadow(0 2px 3px rgba(47,42,38,0.22)) drop-shadow(0 7px 18px rgba(47,42,38,0.10))',
+                                filter: 'sepia(0.18) saturate(1.28) contrast(1.06) drop-shadow(0 2px 4px rgba(0,0,0,0.08))',
                                 opacity: 0.97,
                             }}
                             priority
@@ -72,39 +72,41 @@ export function SiteNav() {
                     </Link>
                 </div>
 
-                {/* Desktop nav — script font, gentle */}
-                <div className="hidden md:flex flex-row items-center gap-7 pointer-events-auto">
+                {/* Desktop nav — minimal, Inter font */}
+                <div className="hidden md:flex flex-row items-center gap-6 pointer-events-auto">
                     {navLinks.map((link, i) => (
                         <Link
                             key={link.href}
                             href={link.href}
                             className={cn(
-                                "underline-draw transition-colors duration-700 text-[1.08rem] relative",
+                                "nav-link-custom relative transition-all duration-200",
+                                pathname === link.href ? "text-[var(--color-ink)]" : "text-[var(--color-ink-muted)] hover:text-[var(--accent-general)]"
                             )}
                             style={{
-                                fontFamily: 'var(--font-script)',
-                                color: pathname === link.href ? link.accent : 'var(--color-ink-muted)',
-                                transform: `rotate(${i % 2 === 0 ? '-0.4deg' : '0.3deg'})`,
+                                fontFamily: 'var(--font-sans)',
+                                fontSize: '0.9rem',
+                                fontWeight: 400,
+                                transform: `rotate(${i % 2 === 0 ? '-0.2deg' : '0.1deg'})`,
                                 display: 'inline-block',
-                                '--underline-accent': link.accent,
                             } as React.CSSProperties}
                         >
                             {link.label}
+                            {/* Subtle underline for active item */}
                             {pathname === link.href && (
                                 <span
                                     aria-hidden="true"
                                     style={{
                                         position: 'absolute',
-                                        bottom: '-3px',
-                                        left: '-2px',
-                                        right: '-2px',
-                                        height: '1.5px',
-                                        background: link.accent,
-                                        opacity: 0.5,
-                                        borderRadius: '2px',
+                                        bottom: '-4px',
+                                        left: 0,
+                                        right: 0,
+                                        height: '1px',
+                                        background: 'rgba(120, 100, 76, 0.3)',
                                     }}
                                 />
                             )}
+                            {/* Soft hover underline (handled by CSS) */}
+                            <span className="hover-underline" />
                         </Link>
                     ))}
                 </div>
@@ -175,10 +177,10 @@ export function SiteNav() {
                                     href={link.href}
                                     onClick={() => setIsOpen(false)}
                                     style={{
-                                        fontFamily: 'var(--font-script)',
-                                        fontSize: 'clamp(2rem, 8vw, 2.8rem)',
+                                        fontFamily: 'var(--font-sans)',
+                                        fontSize: 'clamp(1.5rem, 6vw, 2rem)',
                                         color: pathname === link.href ? link.accent : 'var(--color-ink-muted)',
-                                        transform: `rotate(${[-0.6, 0.5, -0.3, 0.4][i]}deg)`,
+                                        transform: `rotate(${[-0.3, 0.2, -0.1, 0.2][i]}deg)`,
                                         display: 'inline-block',
                                         transition: 'color 400ms ease',
                                     }}
