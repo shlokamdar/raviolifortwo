@@ -1,10 +1,15 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 
 export default function BookPage() {
   const [submitted, setSubmitted] = useState(false);
+
+  useEffect(() => {
+    document.body.classList.add("theme-book");
+    return () => document.body.classList.remove("theme-book");
+  }, []);
 
   return (
     <div className="w-full pb-32">
@@ -44,7 +49,7 @@ export default function BookPage() {
         </div>
       </div>
 
-      <div style={{ width: '40px', height: '0.5px', background: 'var(--dust)', opacity: 0.25, marginBottom: '40px' }} />
+      <div style={{ width: '40px', height: '0.5px', background: 'var(--book-rule)', marginBottom: '40px' }} />
 
       {/* --- COMING SOON STATEMENT --- */}
       <div className="mono" style={{ 
@@ -83,7 +88,7 @@ export default function BookPage() {
         </p>
       </div>
 
-      <div style={{ width: '40px', height: '0.5px', background: 'var(--dust)', opacity: 0.2, marginTop: '48px', marginBottom: '48px' }} />
+      <div style={{ width: '40px', height: '0.5px', background: 'var(--book-rule)', marginTop: '48px', marginBottom: '48px' }} />
 
       {/* --- EXCERPT POEM --- */}
       <div className="mono" style={{ fontSize: '10px', color: 'var(--dust)', textTransform: 'lowercase', marginBottom: '28px' }}>
@@ -136,15 +141,22 @@ export default function BookPage() {
             onSubmit={(e) => { e.preventDefault(); setSubmitted(true); }}
             className="flex flex-col md:flex-row md:items-center gap-4"
           >
+            <style>{`
+              .book-notify-btn:hover {
+                background: rgba(255,255,255,0.05) !important;
+                color: var(--dust) !important;
+                border-color: var(--book-rule) !important;
+              }
+            `}</style>
             <input 
               type="email" 
               required
               placeholder="your email" 
-              className="mono focus:outline-none focus:border-[var(--ink)] transition-colors"
+              className="mono focus:outline-none transition-colors"
               style={{
                 background: 'transparent',
                 border: 'none',
-                borderBottom: '0.5px solid var(--dust)',
+                borderBottom: '0.5px solid var(--book-rule)',
                 borderRadius: 0,
                 padding: '8px 0',
                 width: '100%',
@@ -155,10 +167,10 @@ export default function BookPage() {
             />
             <button 
               type="submit"
-              className="mono hover:text-[var(--ink)] hover:border-solid transition-colors"
+              className="mono book-notify-btn transition-colors"
               style={{
                 background: 'transparent',
-                border: '0.5px solid rgba(44,40,37,0.3)',
+                border: '0.5px solid var(--book-rule)',
                 padding: '8px 16px',
                 borderRadius: '2px',
                 fontSize: '11px',

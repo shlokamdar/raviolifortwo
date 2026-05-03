@@ -91,3 +91,33 @@ body {
     font-size: 16px;
   }
 }
+
+/* --- BOOK THEME TOKENS --- */
+:root {
+  --book-bg: #1C1F2E;
+  --book-surface: #2A2E40;
+  --book-text: #E8EBF2;
+  --book-meta: #8B9BB4;
+  --book-rule: #3D4258;
+  --book-tape: #6B7A9B;
+}
+
+body.theme-book {
+  background-color: var(--book-bg) !important;
+  color: var(--book-text) !important;
+  
+  /* Remap global tokens so SiteNav and Footer adapt automatically */
+  --cream: var(--book-bg);
+  --paper: var(--book-surface);
+  --ink: var(--book-text);
+  --dust: var(--book-meta);
+}
+
+body.theme-book footer img {
+  opacity: 0.2 !important;
+}
+
+body.theme-book footer div[style*="width: 48px"] {
+  background-color: var(--book-rule) !important;
+}
+

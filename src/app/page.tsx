@@ -86,7 +86,7 @@ export default async function Home() {
           className="book-teaser-card block"
           style={{
             maxWidth: '480px',
-            backgroundColor: 'var(--ink)',
+            backgroundColor: 'var(--book-bg)',
             borderRadius: '2px',
             padding: '32px 36px',
             transform: 'rotate(-0.5deg)',
@@ -96,7 +96,7 @@ export default async function Home() {
           <div className="mono" style={{ 
             fontSize: '9px', 
             letterSpacing: '0.12em', 
-            color: 'rgba(245,240,232,0.45)', 
+            color: 'var(--book-meta)', 
             textTransform: 'uppercase',
             marginBottom: '16px' 
           }}>
@@ -108,7 +108,7 @@ export default async function Home() {
             fontSize: '28px', 
             fontStyle: 'italic', 
             fontWeight: 300, 
-            color: 'var(--cream)',
+            color: 'var(--book-text)',
             lineHeight: 1.2
           }}>
             i kept your place
@@ -118,7 +118,7 @@ export default async function Home() {
             fontSize: '16px', 
             fontStyle: 'italic', 
             fontWeight: 300, 
-            color: 'rgba(245,240,232,0.55)',
+            color: 'rgba(232,235,242,0.55)',
             marginBottom: '28px',
             lineHeight: 1.2
           }}>
@@ -129,17 +129,17 @@ export default async function Home() {
             fontFamily: 'var(--font-serif)', 
             fontSize: '15px', 
             fontStyle: 'italic', 
-            color: 'rgba(245,240,232,0.4)',
+            color: 'rgba(232,235,242,0.38)',
             marginBottom: '32px'
           }}>
             pressed quiet in between words, aching for your hands
           </div>
 
           <div className="flex justify-between items-center w-full">
-            <div className="mono" style={{ fontSize: '9px', color: 'rgba(245,240,232,0.35)', textTransform: 'lowercase' }}>
+            <div className="mono" style={{ fontSize: '9px', color: 'rgba(139,155,180,0.5)', textTransform: 'lowercase' }}>
               by raviolifortwo
             </div>
-            <div className="mono" style={{ fontSize: '9px', color: 'rgba(245,240,232,0.5)', textTransform: 'lowercase' }}>
+            <div className="mono" style={{ fontSize: '9px', color: 'rgba(139,155,180,0.6)', textTransform: 'lowercase' }}>
               coming soon &rarr;
             </div>
           </div>
