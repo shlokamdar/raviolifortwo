@@ -4,13 +4,13 @@ import { getPoemBySlug } from "@/lib/poems";
 import { PageContainer } from "@/components/PageContainer";
 
 interface PoemPageProps {
-    params: {
+    params: Promise<{
         slug: string;
-    };
+    }>;
 }
 
 export default async function PoemPage({ params }: PoemPageProps) {
-    const { slug } = params;
+    const { slug } = await params;
     const poem = await getPoemBySlug(slug);
 
     if (!poem) {
