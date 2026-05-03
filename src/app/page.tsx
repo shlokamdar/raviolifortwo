@@ -38,7 +38,7 @@ export default async function Home() {
       </section>
 
       {/* FEATURED POEM CARD */}
-      <section style={{ marginTop: '48px', marginBottom: '80px' }}>
+      <section style={{ marginTop: '48px', marginBottom: '48px' }}>
         <div className="poem-card-base" style={{ maxWidth: '480px', padding: '28px 32px' }}>
           {/* Tape */}
           <div 
@@ -72,6 +72,78 @@ export default async function Home() {
             </Link>
           </div>
         </div>
+      </section>
+
+      {/* BOOK TEASER CARD */}
+      <section style={{ marginBottom: '48px' }}>
+        <style>{`
+          .book-teaser-card:hover {
+            transform: rotate(0deg) !important;
+          }
+        `}</style>
+        <Link 
+          href="/kept"
+          className="book-teaser-card block"
+          style={{
+            maxWidth: '480px',
+            backgroundColor: 'var(--ink)',
+            borderRadius: '2px',
+            padding: '32px 36px',
+            transform: 'rotate(-0.5deg)',
+            transition: 'transform 0.25s ease'
+          }}
+        >
+          <div className="mono" style={{ 
+            fontSize: '9px', 
+            letterSpacing: '0.12em', 
+            color: 'rgba(245,240,232,0.45)', 
+            textTransform: 'uppercase',
+            marginBottom: '16px' 
+          }}>
+            a collection in progress
+          </div>
+
+          <div style={{ 
+            fontFamily: 'var(--font-serif)', 
+            fontSize: '28px', 
+            fontStyle: 'italic', 
+            fontWeight: 300, 
+            color: 'var(--cream)',
+            lineHeight: 1.2
+          }}>
+            i kept your place
+          </div>
+          <div style={{ 
+            fontFamily: 'var(--font-serif)', 
+            fontSize: '16px', 
+            fontStyle: 'italic', 
+            fontWeight: 300, 
+            color: 'rgba(245,240,232,0.55)',
+            marginBottom: '28px',
+            lineHeight: 1.2
+          }}>
+            long after you stopped looking for it.
+          </div>
+
+          <div style={{ 
+            fontFamily: 'var(--font-serif)', 
+            fontSize: '15px', 
+            fontStyle: 'italic', 
+            color: 'rgba(245,240,232,0.4)',
+            marginBottom: '32px'
+          }}>
+            pressed quiet in between words, aching for your hands
+          </div>
+
+          <div className="flex justify-between items-center w-full">
+            <div className="mono" style={{ fontSize: '9px', color: 'rgba(245,240,232,0.35)', textTransform: 'lowercase' }}>
+              by raviolifortwo
+            </div>
+            <div className="mono" style={{ fontSize: '9px', color: 'rgba(245,240,232,0.5)', textTransform: 'lowercase' }}>
+              coming soon &rarr;
+            </div>
+          </div>
+        </Link>
       </section>
 
       {/* RECENTLY WRITTEN */}

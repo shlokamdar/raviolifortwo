@@ -30,13 +30,13 @@ export const metadata: Metadata = {
     default: "raviolifortwo | poems by seven",
     template: "%s | raviolifortwo"
   },
-  description: "a room that remembers you — poems and prose by seven (shloka kamadar). exploring intimacy, memory, and the quiet moments in between.",
-  keywords: ["raviolifortwo", "poems by seven", "shloka kamadar", "poetry", "poetry archive", "literary blog", "seven poems"],
-  authors: [{ name: "Shloka Kamadar", url: "https://raviolifortwo.vercel.app" }],
-  creator: "Shloka Kamadar",
+  description: "a room that remembers you — poems and prose by seven. exploring intimacy, memory, and the quiet moments in between.",
+  keywords: ["raviolifortwo", "poems by seven", "seven", "poetry", "poetry archive", "literary blog", "seven poems"],
+  authors: [{ name: "seven", url: "https://raviolifortwo.vercel.app" }],
+  creator: "seven",
   openGraph: {
     title: "raviolifortwo | poems by seven",
-    description: "a room that remembers you — poems and prose by seven (shloka kamadar).",
+    description: "a room that remembers you — poems and prose by seven.",
     url: "https://raviolifortwo.vercel.app",
     siteName: "raviolifortwo",
     locale: "en_US",
@@ -77,31 +77,27 @@ export default function RootLayout({
         </main>
 
         {/* Footer — like a page closing */}
-        <footer className="py-16 flex flex-col items-center gap-6 relative md:ml-[220px]">
-          {/* hand-rule */}
-          <div className="section-divider w-48 mx-auto" style={{ margin: '0 auto 1.5rem' }} />
+        <footer className="pt-[48px] pb-[40px] flex flex-col items-center relative md:ml-[220px]">
+          <div style={{ width: '48px', height: '0.5px', background: 'var(--dust)', opacity: 0.4, marginBottom: '24px' }} />
 
-          <p className="mono text-[var(--dust)]">
-            the light is always on.
-          </p>
-          <div
-            className="strawberry-glow"
-            style={{
-              fontSize: "1.1rem",
-              cursor: "default",
-              userSelect: "none",
-            }}
-            aria-hidden="true"
-          >
-            🍓
-          </div>
-
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img 
+            src="/shloka logo.png" 
+            alt="signature" 
+            style={{ 
+              width: '64px', 
+              opacity: 0.35, 
+              mixBlendMode: 'multiply',
+              marginBottom: '16px' 
+            }} 
+          />
+          
           <span
             className="mono"
-            style={{ fontSize: "10px", opacity: 0.6, marginTop: '-4px' }}
+            style={{ fontSize: "9px", color: 'var(--dust)', opacity: 0.4, textAlign: 'center' }}
             aria-hidden="true"
           >
-            (stay as long as you need)
+            the light is always on.
           </span>
         </footer>
       </body>

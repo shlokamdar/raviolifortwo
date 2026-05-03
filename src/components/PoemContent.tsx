@@ -192,7 +192,7 @@ export function PoemContent({ poem }: PoemContentProps) {
           fontSize: '14px',
           color: 'var(--dust)'
         }}>
-          — shloka kamadar
+          — seven
         </div>
 
         <div style={{ marginTop: '48px', paddingBottom: '80px' }}>

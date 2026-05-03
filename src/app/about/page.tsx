@@ -208,19 +208,18 @@ export default function AboutPage() {
                         </p>
                     </RevealOnScroll>
 
-                    {/* Signature */}
-                    <div
-                        style={{
-                            paddingTop: '20px',
-                            fontFamily: 'var(--font-script)',
-                            fontSize: '1.1rem',
-                            color: 'var(--color-ink-faint)',
-                            transform: 'rotate(-0.5deg)',
-                            display: 'inline-block',
-                            marginLeft: '4px',
-                        }}
-                    >
-                        — Shloka Kamadar
+                    {/* Signature Image */}
+                    <div style={{ marginTop: '56px', marginLeft: '8px' }}>
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img 
+                            src="/shloka logo.png" 
+                            alt="signature" 
+                            style={{ 
+                                width: '80px', 
+                                opacity: 0.5, 
+                                mixBlendMode: 'multiply'
+                            }} 
+                        />
                     </div>
                 </div>
             </article>
