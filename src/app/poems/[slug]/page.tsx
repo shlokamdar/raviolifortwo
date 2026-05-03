@@ -147,22 +147,15 @@ export default async function PoemPage({ params }: PoemPageProps) {
                 <div style={{ marginTop: '16px', marginLeft: '6px', marginBottom: '80px' }}>
                     <Link
                         href={isLetter ? "/letters" : "/archive"}
+                        className="text-[var(--color-ink-faint)] hover:text-[var(--color-ink-muted)] transition-colors duration-400"
                         style={{
                             fontFamily: 'var(--font-script)',
                             fontSize: '0.95rem',
-                            color: 'var(--color-ink-faint)',
                             textDecoration: 'underline',
                             textDecorationColor: 'rgba(120,100,76,0.22)',
                             textUnderlineOffset: '4px',
                             display: 'inline-block',
                             transform: 'rotate(-0.3deg)',
-                            transition: 'color 400ms ease',
-                        }}
-                        onMouseEnter={(e) => {
-                            (e.currentTarget as HTMLElement).style.color = 'var(--color-ink-muted)';
-                        }}
-                        onMouseLeave={(e) => {
-                            (e.currentTarget as HTMLElement).style.color = 'var(--color-ink-faint)';
                         }}
                     >
                         ← back to {isLetter ? "letters i kept" : "what i wrote"}
