@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Cormorant_Garamond, Inter, Caveat } from "next/font/google";
+import { Cormorant_Garamond, IBM_Plex_Mono } from "next/font/google";
 import "./globals.css";
 import { PorchLightEffect } from "@/components/PorchLightEffect";
 import { SiteNav } from "@/components/SiteNav";
@@ -18,16 +18,10 @@ const cormorantGaramond = Cormorant_Garamond({
   display: "swap",
 });
 
-const inter = Inter({
-  variable: "--font-inter",
+const ibmPlexMono = IBM_Plex_Mono({
+  variable: "--font-ibm-plex-mono",
   subsets: ["latin"],
-  display: "swap",
-});
-
-const caveat = Caveat({
-  variable: "--font-caveat",
-  subsets: ["latin"],
-  weight: ["400", "500", "600"],
+  weight: ["300", "400"],
   display: "swap",
 });
 
@@ -69,34 +63,25 @@ export default function RootLayout({
       lang="en"
       className={cn(
         cormorantGaramond.variable,
-        inter.variable,
-        caveat.variable,
+        ibmPlexMono.variable,
         "h-full antialiased"
       )}
     >
-      <body className="min-h-full flex flex-col selection:bg-[var(--accent-general)]/25 selection:text-[var(--color-ink)]">
+      <body className="min-h-full flex flex-col selection:bg-[var(--tape-warm)]/30 selection:text-[var(--ink)]">
         <PorchLightEffect />
         <SiteNav />
-        <main className="flex-grow">
-          {children}
+        <main className="flex-grow md:ml-[220px] pt-24 md:pt-16 px-6 md:pr-12">
+          <div className="max-w-[800px]">
+            {children}
+          </div>
         </main>
 
         {/* Footer — like a page closing */}
-        <footer className="py-16 flex flex-col items-center gap-6 relative">
+        <footer className="py-16 flex flex-col items-center gap-6 relative md:ml-[220px]">
           {/* hand-rule */}
           <div className="section-divider w-48 mx-auto" style={{ margin: '0 auto 1.5rem' }} />
 
-          <p
-            style={{
-              fontFamily: "var(--font-script)",
-              fontSize: "1rem",
-              color: "var(--color-ink-faint)",
-              letterSpacing: "0.03em",
-              textAlign: "center",
-              transform: "rotate(-0.5deg)",
-              display: "inline-block",
-            }}
-          >
+          <p className="mono text-[var(--dust)]">
             the light is always on.
           </p>
           <div
@@ -111,10 +96,9 @@ export default function RootLayout({
             🍓
           </div>
 
-          {/* tiny margin note */}
           <span
-            className="margin-note"
-            style={{ fontSize: "0.68rem", opacity: 0.45, marginTop: '-4px' }}
+            className="mono"
+            style={{ fontSize: "10px", opacity: 0.6, marginTop: '-4px' }}
             aria-hidden="true"
           >
             (stay as long as you need)

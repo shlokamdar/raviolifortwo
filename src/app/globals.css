@@ -1,488 +1,84 @@
 @import "tailwindcss";
 
-/* ─── Scrapbook Design Tokens ──────────────────────────────── */
 :root {
-  /* Paper + ink palette */
-  --color-canvas:         #f5efe6;
-  --color-canvas-warm:    #ebe1d2;
-  --color-canvas-cream:   #fbf6ed;
-  --color-ink:            #2f2a26;
-  --color-ink-muted:      #756452;
-  --color-ink-faint:      #aa977f;
-  --color-tape:           rgba(226, 198, 154, 0.58);
-  --color-tape-pink:      rgba(221, 171, 179, 0.50);
-  --color-tape-sage:      rgba(158, 190, 154, 0.50);
-  --color-tape-blue:      rgba(166, 187, 210, 0.48);
-  --color-tape-lavender:  rgba(198, 173, 216, 0.44);
-
-  /* Borders & shadows – paper-stacked feel */
-  --color-border:         rgba(112, 86, 58, 0.15);
-  --color-border-hover:   rgba(112, 86, 58, 0.30);
-  --shadow-paper:         1px 2px 0 rgba(255,255,255,0.55), 3px 7px 20px rgba(62, 45, 25, 0.12), 0 1px 0 rgba(62,45,25,0.05);
-  --shadow-lift:          2px 3px 0 rgba(255,255,255,0.48), 6px 13px 34px rgba(62, 45, 25, 0.17), 0 1px 0 rgba(62,45,25,0.07);
-  --shadow-pinned:        1px 3px 10px rgba(62, 45, 25, 0.13);
-  --radius-cozy:          3px;        /* almost no rounding — paper edges */
-
-  /* Section accent colours */
-  --accent-general:       #b55446;
-  --accent-archive:       #a67d3e;
-  --accent-robin:         #5f8065;
-  --accent-peter:         #9d5878;
-  --accent-blue:          #667f9d;
-
-  /* ── Typography (canonical names) ── */
-  --font-serif:        var(--font-cormorant-garamond), Georgia, 'Times New Roman', serif;
-  --font-sans:         var(--font-inter), system-ui, -apple-system, sans-serif;
-  --font-handwritten:  var(--font-caveat), cursive;
-
-  /* Legacy aliases — kept so old inline styles still work */
-  --font-display: var(--font-serif);
-  --font-body:    var(--font-sans);
-  --font-script:  var(--font-handwritten);
-
-  --background: var(--color-canvas);
-  --foreground: var(--color-ink);
-
-  /* Porch light compat */
-  --color-parchment: var(--color-canvas);
-  --color-gold: #A8782A;
-  --color-surface: rgba(255, 251, 243, 0.7);
-  --color-surface-strong: rgba(255, 251, 243, 0.88);
-  --color-surface-warm: rgba(250, 242, 224, 0.6);
-  --color-shadow: rgba(60, 40, 20, 0.08);
-  --shadow-soft: var(--shadow-paper);
+  --cream: #F5F0E8;
+  --paper: #E8E0D4;
+  --ink: #2C2825;
+  --dust: #8C7B6B;
+  --tape-warm: #C4A882;
+  --tape-cool: #A8B8C4;
+  --tape-lilac: #B8A8C4;
+  --tape-sage: #A8BFA8;
+  --tape-rose: #C4A8A8;
+  
+  --font-serif: var(--font-cormorant-garamond), serif;
+  --font-mono: var(--font-ibm-plex-mono), monospace;
 }
 
-/* ─── Tailwind theme expose ──────────────────────────────────── */
 @theme {
-  --color-canvas:        var(--color-canvas);
-  --color-ink:           var(--color-ink);
-  --color-ink-muted:     var(--color-ink-muted);
-  --color-ink-faint:     var(--color-ink-faint);
-  --color-border:        var(--color-border);
-  --color-border-hover:  var(--color-border-hover);
-  --color-surface:       var(--color-surface);
-  --color-surface-strong:var(--color-surface-strong);
-  --color-surface-warm:  var(--color-surface-warm);
-  --color-shadow:        var(--color-shadow);
-  --shadow-soft:         var(--shadow-soft);
-  --shadow-lift:         var(--shadow-lift);
-  --radius-cozy:         var(--radius-cozy);
+  --color-cream: var(--cream);
+  --color-paper: var(--paper);
+  --color-ink: var(--ink);
+  --color-dust: var(--dust);
+  --color-tape-warm: var(--tape-warm);
+  --color-tape-cool: var(--tape-cool);
+  --color-tape-lilac: var(--tape-lilac);
+  --color-tape-sage: var(--tape-sage);
+  --color-tape-rose: var(--tape-rose);
 
-  --accent-general:      var(--accent-general);
-  --accent-archive:      var(--accent-archive);
-  --accent-robin:        var(--accent-robin);
-  --accent-peter:        var(--accent-peter);
-
-  --font-serif:          var(--font-serif);
-  --font-sans:           var(--font-sans);
-  --font-handwritten:    var(--font-handwritten);
-  /* Legacy aliases in @theme */
-  --font-display:        var(--font-serif);
-  --font-body:           var(--font-sans);
-  --font-script:         var(--font-handwritten);
-
-  --animate-fade-in: fade-in 1.2s ease-out forwards;
-
-  @keyframes fade-in {
-    from { opacity: 0; transform: translateY(8px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
+  --font-serif: var(--font-serif);
+  --font-mono: var(--font-mono);
 }
 
-/* ─── Base ─────────────────────────────────────────────────── */
 * { box-sizing: border-box; }
 
 html {
   text-rendering: optimizeLegibility;
-  /* Offset anchor links so they aren't hidden behind the fixed navbar */
   scroll-padding-top: 80px;
 }
 
 body {
-  background-color: var(--color-canvas);
-  color: var(--foreground);
-  /* UI default: Inter — clean, readable */
-  font-family: var(--font-sans);
-  font-size: 15px;
-  line-height: 1.7;
+  background: var(--cream);
+  color: var(--ink);
+  font-family: 'Cormorant Garamond', var(--font-serif);
+  font-size: 18px;
+  line-height: 1.75;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   position: relative;
   min-height: 100vh;
 }
 
-/* ─── Grain texture overlay ──────────────────────────────────── */
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  z-index: -2;
-  pointer-events: none;
-  /* SVG noise filter rendered as data URI */
-  background-image:
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.84' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.052'/%3E%3C/svg%3E");
-  background-repeat: repeat;
-  background-size: 220px 220px;
-  mix-blend-mode: multiply;
-  opacity: 1;
+.mono {
+  font-family: 'IBM Plex Mono', var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  color: var(--dust);
+  text-transform: lowercase;
 }
 
-/* ─── Ambient warm light ─────────────────────────────────────── */
-body::after {
-  content: "";
-  position: fixed;
-  inset: 0;
-  z-index: -3;
-  pointer-events: none;
-  background:
-    radial-gradient(ellipse at center, transparent 48%, rgba(69, 45, 26, 0.055) 100%),
-    radial-gradient(ellipse 900px 500px at 12% 5%,  rgba(196,138,31,0.07), transparent 65%),
-    radial-gradient(ellipse 700px 600px at 88% 15%, rgba(184,76,60,0.05),  transparent 60%),
-    radial-gradient(ellipse 800px 700px at 50% 110%,rgba(107,127,94,0.05), transparent 62%);
-}
+.tape-warm { background-color: var(--tape-warm); }
+.tape-cool { background-color: var(--tape-cool); }
+.tape-lilac { background-color: var(--tape-lilac); }
+.tape-sage { background-color: var(--tape-sage); }
+.tape-rose { background-color: var(--tape-rose); }
 
-/* ─── Page layout ─────────────────────────────────────────────── */
-.page-content {
-  padding-left:  clamp(20px, 5vw, 64px);
-  padding-right: clamp(20px, 5vw, 64px);
-  /* 68px = fixed navbar height; extra breathing room on top of that */
-  padding-top:   calc(68px + clamp(28px, 4vw, 52px));
-  padding-bottom:clamp(84px, 10vw, 128px);
-}
-
-/* ─── Typography system ────────────────────────────────────────── */
-
-/*
-  HIERARCHY:
-  --font-serif       → headings, poem lines, card titles, pull quotes
-  --font-sans        → navbar, UI labels, tags, small annotations, eyebrows
-  --font-handwritten → ONLY: "read →", tiny margin notes, captions
-*/
-
-/* Headings: editorial serif — Co-Star / literary feel */
-h1, h2, h3 {
-  font-family: var(--font-serif);
-  font-weight: 400;
-  color: var(--color-ink);
-  line-height: 1.5;
-  letter-spacing: 0.015em;
-}
-
-/* Poem body: serif, readable weight, generous air */
-.poem-body {
-  white-space: pre-wrap;
-  word-break: break-word;
-  font-family: var(--font-serif);
-  font-size: clamp(1.06rem, 1.8vw + 0.5rem, 1.18rem);
-  line-height: 2.1;
-  font-weight: 400;          /* never 300 — keeps it legible */
-  color: var(--color-ink);
-  letter-spacing: 0.012em;
-}
-
-.poem-body div { margin-bottom: 2rem; }
-
-/* Card title: italic serif, Co-Star pull-quote feel */
-.card-title {
-  font-family: var(--font-serif);
-  font-style: italic;
-  font-size: clamp(1.12rem, 2.2vw, 1.52rem);
-  font-weight: 400;
-  color: var(--color-ink);
-  line-height: 1.45;
-  letter-spacing: 0.015em;
-}
-
-/* Eyebrow: Inter small, spaced — architectural UI label */
-.eyebrow {
-  font-family: var(--font-sans);
-  font-size: 0.68rem;
-  font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 0.14em;
-  color: var(--color-ink-faint);
-}
-
-/* Nav links: Inter — clean, minimal */
-.nav-link {
-  font-family: var(--font-sans);
-  font-size: 0.88rem;
-  font-weight: 400;
-  letter-spacing: 0.01em;
-}
-
-.nav-link-custom .hover-underline {
-  position: absolute;
-  bottom: -4px;
-  left: 0;
-  right: 0;
-  height: 1px;
-  background: var(--accent-general);
-  opacity: 0;
-  transform: translateY(2px);
-  transition: all 0.2s ease;
-}
-
-.nav-link-custom:hover .hover-underline,
-.nav-link-custom:focus-visible .hover-underline {
-  opacity: 0.6;
-  transform: translateY(0);
-}
-
-/* Handwritten: Caveat — used ONLY for tiny annotations, read-links */
-.text-handwritten {
-  font-family: var(--font-handwritten);
-  font-size: 0.95rem;
-  font-weight: 400;
-}
-
-/* Scrap label: used for section headers in scrapbook layout */
-.scrap-label {
-  font-family: var(--font-sans);
-  font-size: 0.72rem;
-  font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  color: var(--color-ink-muted);
-}
-
-/* ─── Scrapbook paper fragment ───────────────────────────────── */
-/* Use .paper-scrap on cards / sections to get that torn-paper look */
-.paper-scrap {
-  background-color: var(--color-canvas-cream);
-  border: 1px solid rgba(120, 100, 76, 0.12);
-  box-shadow: var(--shadow-paper);
-  position: relative;
-  /* Subtle paper fiber texture */
-  background-image:
-    repeating-linear-gradient(
-      0deg,
-      transparent,
-      transparent 27px,
-      rgba(120, 100, 76, 0.025) 27px,
-      rgba(120, 100, 76, 0.025) 28px
-    ),
-    linear-gradient(91deg, rgba(164, 125, 76, 0.025), transparent 38%, rgba(88, 66, 40, 0.018));
-  transition: transform 760ms cubic-bezier(0.22, 1, 0.36, 1), box-shadow 760ms cubic-bezier(0.22, 1, 0.36, 1), border-color 760ms ease;
-}
-
-.paper-scrap::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  border: 1px solid rgba(255, 255, 255, 0.38);
-  transform: translate(1px, -1px);
-  opacity: 0.55;
-}
-
-/* Tape strip across top of a scrap */
-.tape-strip {
-  position: absolute;
-  top: -10px;
-  left: 50%;
-  transform: translateX(-50%) rotate(-0.8deg);
-  width: 60px;
-  height: 20px;
-  background: var(--color-tape);
-  border-radius: 1px;
-  pointer-events: none;
-  z-index: 2;
-  box-shadow: 0 1px 3px rgba(62,45,25,0.10);
-  opacity: 0.92;
-}
-
-.tape-strip.tape-pink { background: var(--color-tape-pink); }
-.tape-strip.tape-sage { background: var(--color-tape-sage); }
-.tape-strip.tape-blue { background: var(--color-tape-blue); }
-.tape-strip.tape-lavender { background: var(--color-tape-lavender); }
-.tape-strip.tape-left { left: 18px; transform: none; top: -10px; rotate: -1.5deg; }
-.tape-strip.tape-right { left: auto; right: 18px; transform: none; top: -10px; rotate: 1deg; }
-
-/* Washi tape side (vertical) */
-.tape-corner {
-  position: absolute;
-  width: 18px;
-  height: 48px;
-  background: var(--color-tape);
-  border-radius: 1px;
-  pointer-events: none;
-  z-index: 2;
-}
-
-/* ─── Polaroid frame ──────────────────────────────────────────── */
-.polaroid {
-  background: #fdfaf4;
-  padding: 10px 10px 28px 10px;
-  box-shadow: var(--shadow-paper);
-  display: inline-block;
-  position: relative;
-}
-.polaroid::after {
-  content: attr(data-caption);
-  position: absolute;
-  bottom: 7px;
-  left: 0; right: 0;
-  text-align: center;
-  font-family: var(--font-script);
-  font-size: 0.8rem;
-  color: var(--color-ink-muted);
-}
-
-/* ─── Hand-drawn underline ───────────────────────────────────── */
-.underline-draw {
-  position: relative;
-  text-decoration: none;
-}
-.underline-draw::after {
-  content: "";
-  position: absolute;
-  left: 0; right: 0;
-  bottom: -4px;
-  height: 2px;
-  background: linear-gradient(90deg, transparent 2%, currentColor 13%, currentColor 53%, rgba(120, 67, 47, 0.38) 79%, transparent 100%);
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform 620ms cubic-bezier(0.22, 1, 0.36, 1), opacity 620ms ease;
-  opacity: 0.48;
+/* Card base class to reuse */
+.poem-card-base {
+  background: var(--paper);
+  border: 0.5px solid rgba(44, 40, 37, 0.12);
   border-radius: 2px;
-}
-.underline-draw:hover::after,
-.underline-draw:focus-visible::after { transform: scaleX(1); }
-
-/* ─── Margin annotation ──────────────────────────────────────── */
-.margin-note {
-  font-family: var(--font-script);
-  font-size: 0.78rem;
-  color: var(--color-ink-faint);
-  line-height: 1.5;
-  font-style: italic;
-  transform: rotate(-1deg);
-  display: inline-block;
-}
-
-/* ─── Section divider (hand-drawn feel) ─────────────────────── */
-.section-divider {
-  border: none;
-  height: 14px;
-  background:
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='420' height='14' viewBox='0 0 420 14'%3E%3Cpath d='M3 8 C 42 5, 76 10, 115 7 S 198 5, 240 8 S 318 11, 417 6' fill='none' stroke='%23786450' stroke-opacity='0.24' stroke-width='1.2' stroke-linecap='round'/%3E%3Cpath d='M45 10 C 78 8, 98 9, 133 8' fill='none' stroke='%23b55446' stroke-opacity='0.17' stroke-width='0.8' stroke-linecap='round'/%3E%3C/svg%3E")
-    center / min(420px, 100%) 14px no-repeat;
-  margin: 2.5rem 0;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
   position: relative;
-}
-/* Tiny decorative mark in the center */
-.section-divider::after {
-  content: "✦";
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  background: var(--color-canvas);
-  padding: 0 8px;
-  font-size: 0.55rem;
-  color: var(--color-ink-faint);
-  letter-spacing: 4px;
-}
-
-/* ─── Newsletter input ────────────────────────────────────────── */
-.newsletter-input:focus-visible {
-  outline: none;
-  box-shadow: 0 0 0 1.5px rgba(168, 120, 42, 0.30);
-}
-
-/* ─── Scrapbook section label ────────────────────────────────── */
-.scrap-label {
-  font-family: var(--font-script);
-  font-size: 1.08rem;
-  color: var(--color-ink-muted);
-  letter-spacing: 0.01em;
-  display: inline-block;
-}
-
-/* ─── Hover drift (gentle float) ────────────────────────────── */
-.hover-drift {
-  transition: transform 760ms cubic-bezier(0.22, 1, 0.36, 1), box-shadow 760ms cubic-bezier(0.22, 1, 0.36, 1);
-}
-.hover-drift:hover {
-  transform: translateY(-2px) rotate(0.3deg);
-  box-shadow: var(--shadow-lift);
-}
-
-.section-divider::after {
-  content: "";
-  width: 5px;
-  height: 5px;
-  padding: 0;
-  transform: translate(-50%, -50%) rotate(12deg);
-  border: 1px solid rgba(117, 100, 82, 0.25);
-  border-radius: 50%;
-  font-size: 0;
-  letter-spacing: 0;
-}
-
-.letter-scrap {
   display: block;
-  transform: rotate(var(--scrap-rotation));
-  transition: transform 780ms cubic-bezier(0.22, 1, 0.36, 1), filter 780ms ease;
 }
 
-.poem-card-link {
-  transform: rotate(var(--scrap-rotation));
-  transition: transform 780ms cubic-bezier(0.22, 1, 0.36, 1);
+.poem-card-base:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(44, 40, 37, 0.05);
 }
 
-.letter-scrap:hover,
-.letter-scrap:focus-visible,
-.poem-card-link:hover,
-.poem-card-link:focus-visible {
-  transform: rotate(var(--scrap-hover-rotation)) translateY(-2px);
-  z-index: 5;
-}
-
-.letter-scrap:hover .paper-scrap,
-.letter-scrap:focus-visible .paper-scrap,
-.poem-card-link:hover .paper-scrap,
-.poem-card-link:focus-visible .paper-scrap {
-  box-shadow: var(--shadow-lift);
-  border-color: var(--color-border-hover);
-}
-
-.letter-scrap-title {
-  display: block;
-  margin-bottom: 6px;
-  font-family: var(--font-display);
-  font-style: italic;
-  font-size: clamp(1.15rem, 2.4vw, 1.36rem);
-  line-height: 1.32;
-  color: var(--color-ink);
-  transition: color 680ms ease;
-}
-
-.letter-scrap:hover .letter-scrap-title,
-.letter-scrap:focus-visible .letter-scrap-title {
-  color: var(--scrap-accent);
-}
-
-.letter-scrap-note {
-  font-family: var(--font-script);
-  font-size: 0.86rem;
-  line-height: 1.35;
-  color: var(--color-ink-faint);
-}
-
-.annotation-link:hover,
-.annotation-link:focus-visible {
-  color: var(--color-ink) !important;
-  transform: translateY(-1px) rotate(0.25deg);
-}
-
-/* ─── Cursor glow ─────────────────────────────────────────────── */
-* { cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 20 20'%3E%3Ccircle cx='10' cy='10' r='4' fill='rgba(120%2C100%2C76%2C0.5)'/%3E%3C/svg%3E") 10 10, auto; }
-a, button, [role="button"] { cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 20 20'%3E%3Ccircle cx='10' cy='10' r='5' fill='rgba(184%2C76%2C60%2C0.55)'/%3E%3C/svg%3E") 10 10, pointer; }
-
-/* ─── Animations ──────────────────────────────────────────────── */
+/* Animations */
 @keyframes strawberry-glow {
   0%   { filter: drop-shadow(0 0 0 rgba(184,76,60,0)); opacity: 0.40; }
   50%  { filter: drop-shadow(0 0 14px rgba(184,76,60,0.28)); opacity: 0.60; }
@@ -490,122 +86,8 @@ a, button, [role="button"] { cursor: url("data:image/svg+xml,%3Csvg xmlns='http:
 }
 .strawberry-glow { animation: strawberry-glow 5s ease-in-out infinite; }
 
-@keyframes candle-flicker {
-  0%   { transform: translateY(0) scale(1); opacity: 0.7; }
-  30%  { transform: translateY(-0.5px) scale(0.98); opacity: 0.85; }
-  55%  { transform: translateY(0.6px) scale(1.02); opacity: 0.62; }
-  100% { transform: translateY(0) scale(1); opacity: 0.7; }
-}
-.candle-flame { transform-origin: 50% 90%; animation: candle-flicker 1.8s ease-in-out infinite; }
-
-@keyframes envelope-sway {
-  0%   { transform: rotate(-1.2deg) translateY(0); }
-  50%  { transform: rotate(1.6deg) translateY(-2px); }
-  100% { transform: rotate(-1.2deg) translateY(0); }
-}
-.envelope-sway { transform-origin: 50% 30%; animation: envelope-sway 5.6s ease-in-out infinite; }
-
-@keyframes book-breathe {
-  0%   { transform: translateY(0); opacity: 0.55; }
-  50%  { transform: translateY(-2px); opacity: 0.70; }
-  100% { transform: translateY(0); opacity: 0.55; }
-}
-.book-breathe { animation: book-breathe 6.8s ease-in-out infinite; }
-
-@keyframes drift-in {
-  from { opacity: 0; transform: translateY(14px) rotate(-0.4deg); }
-  to   { opacity: 1; transform: translateY(0) rotate(0deg); }
-}
-.drift-in { animation: drift-in 1s cubic-bezier(0.25, 0, 0, 1) forwards; }
-
-/* ─── Watercolor about-page layer ────────────────────────────── */
-.watercolor-layer {
-  background:
-    radial-gradient(920px 520px at 18% 22%, rgba(184,76,60,0.035), transparent 62%),
-    radial-gradient(860px 560px at 82% 28%, rgba(154,80,112,0.03), transparent 60%),
-    radial-gradient(920px 620px at 50% 110%,rgba(160,120,48,0.03), transparent 62%);
-}
-
-/* ─── Whitespace / misc ────────────────────────────────────────── */
-.preserve-whitespace { white-space: pre-wrap; }
-.transition-warmth   { transition: background-color 400ms ease; }
-.transition-color-gold { transition: color 250ms ease; }
-
-/* ─── Responsive ───────────────────────────────────────────────── */
 @media (max-width: 768px) {
-  .poem-body {
+  body {
     font-size: 16px;
-    line-height: 1.95;
   }
-  .poem-title { font-size: 22px !important; }
-  .header-quote { font-size: 16px !important; }
-  .hero-card-line { font-size: 26px; }
-  .archive-grid { grid-template-columns: 1fr; }
-  .poem-card { padding: 18px; }
-  .page-content {
-    padding-left: 22px;
-    padding-right: 22px;
-  }
-  .poem-container { max-width: 100%; }
-}
-
-/* ─── Reduced motion ───────────────────────────────────────────── */
-@media (prefers-reduced-motion: reduce) {
-  .strawberry-glow,
-  .candle-flame,
-  .envelope-sway,
-  .book-breathe,
-  .drift-in { animation: none !important; }
-  .hover-drift { transition: none !important; }
-  .underline-draw::after { transition: none !important; }
-}
-
-/* ─── Header & Nav Layout fixes ────────────────────────────────── */
-.header-container {
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 1.2rem 1.5rem;
-  position: relative;
-}
-
-.header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.nav {
-  display: flex;
-  gap: 1.5rem;
-  align-items: center;
-}
-
-@media (max-width: 768px) {
-  .nav {
-    display: none;
-  }
-}
-
-.menu-btn {
-  background: none;
-  border: none;
-  font-size: 1.5rem;
-  cursor: pointer;
-  color: #2f2a26;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.menu-panel {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  width: 100%;
-  background: #f5efe6;
-  padding: 1rem 1.5rem;
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  box-shadow: 0 4px 12px rgba(60,40,20,0.05);
 }

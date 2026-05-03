@@ -1,4 +1,5 @@
 export type Poem = {
+    date: string
     title: string
     slug: string
     category: 'general' | 'archives-from-instagram' | 'letters-to-robin' | 'letters-to-peter' | 'letters'

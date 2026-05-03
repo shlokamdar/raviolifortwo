@@ -4,20 +4,18 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { cn } from "@/lib/utils";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 
 const navLinks = [
-    { href: "/", label: "come in", accent: "var(--accent-general)" },
-    { href: "/archive", label: "what i wrote", accent: "var(--accent-archive)" },
-    { href: "/letters", label: "letters i kept", accent: "var(--accent-robin)" },
-    { href: "/about", label: "who i am", accent: "var(--accent-general)" },
+    { href: "/", label: "come in" },
+    { href: "/archive", label: "what i wrote" },
+    { href: "/letters", label: "letters i kept" },
+    { href: "/about", label: "who i am" },
 ];
 
 export function SiteNav() {
     const [isOpen, setIsOpen] = useState(false);
-    const [scrolled, setScrolled] = useState(false);
     const pathname = usePathname();
 
     useEffect(() => {
@@ -29,119 +27,102 @@ export function SiteNav() {
         return () => { document.body.style.overflow = 'unset'; };
     }, [isOpen]);
 
-    useEffect(() => {
-        const onScroll = () => setScrolled(window.scrollY > 18);
-        window.addEventListener("scroll", onScroll, { passive: true });
-        return () => window.removeEventListener("scroll", onScroll);
-    }, []);
-
     return (
-        <header
-            className="fixed top-0 left-0 right-0 z-50"
-            style={{
-                background: scrolled ? 'rgba(245, 239, 230, 0.90)' : 'rgba(245, 239, 230, 0.74)',
-                backdropFilter: 'blur(9px)',
-                borderBottom: scrolled ? '1px solid rgba(120,100,76,0.12)' : '1px solid transparent',
-                transition: 'background 600ms ease, border-color 600ms ease, box-shadow 600ms ease',
-                boxShadow: scrolled ? '0 2px 18px rgba(60,40,20,0.07)' : 'none',
-            }}
-        >
-            <div className="header-container">
-                <div className="header">
-                    {/* Logo */}
-                    <div className="shrink-0 pointer-events-auto" style={{ transform: 'rotate(-0.9deg)' }}>
-                        <Link href="/" aria-label="raviolifortwo home">
-                            <Image
-                                src="/ransomizer.com.png"
-                                alt="raviolifortwo"
-                                width={237}
-                                height={73}
-                                style={{
-                                    objectFit: 'contain',
-                                    filter: 'sepia(0.18) saturate(1.28) contrast(1.06) drop-shadow(0 2px 4px rgba(0,0,0,0.08))',
-                                    opacity: 0.97,
-                                    width: 'auto',
-                                    height: 'auto'
-                                }}
-                                priority
-                            />
-                        </Link>
-                    </div>
+        <>
+            {/* Desktop Left Nav */}
+            <header className="hidden md:flex flex-col fixed top-0 left-0 bottom-0 w-[180px] pt-[68px] pl-[20px] z-50">
+                <div className="shrink-0 mb-12 pointer-events-auto">
+                    <Link href="/" aria-label="raviolifortwo home">
+                        <Image
+                            src="/ransomizer.com.png"
+                            alt="raviolifortwo"
+                            width={160}
+                            height={50}
+                            style={{
+                                objectFit: 'contain',
+                                width: '100%',
+                                height: 'auto'
+                            }}
+                            priority
+                        />
+                    </Link>
+                </div>
 
-                    {/* Desktop Nav */}
-                    <nav className="nav pointer-events-auto">
-                        {navLinks.map((link) => (
+                <nav className="flex flex-col gap-5 pointer-events-auto pl-4">
+                    {navLinks.map((link) => {
+                        const isActive = pathname === link.href || (link.href !== '/' && pathname.startsWith(link.href));
+                        return (
                             <Link
                                 key={link.href}
                                 href={link.href}
-                                className="relative transition-colors duration-200"
-                                style={{
-                                    fontFamily: 'var(--font-sans)',
-                                    fontSize: '0.95rem',
-                                    fontWeight: 400,
-                                    color: pathname === link.href ? link.accent : '#2f2a26',
-                                }}
+                                className={`mono relative transition-colors duration-200 flex items-center ${isActive ? '!text-[var(--ink)]' : 'hover:!text-[var(--ink)]'}`}
                             >
-                                {link.label}
-                                {pathname === link.href && (
-                                    <span
-                                        aria-hidden="true"
-                                        style={{
-                                            position: 'absolute',
-                                            bottom: '-4px',
-                                            left: 0,
-                                            right: 0,
-                                            height: '1px',
-                                            background: link.accent,
-                                            opacity: 0.5,
-                                        }}
-                                    />
+                                {isActive && (
+                                    <span className="absolute -left-[16px] w-[12px] h-[1px] bg-[var(--dust)]" />
                                 )}
+                                {link.label}
                             </Link>
-                        ))}
-                    </nav>
+                        );
+                    })}
+                </nav>
+            </header>
 
-                    {/* Mobile Toggle */}
-                    <div className="md:hidden pointer-events-auto flex items-center">
-                        <button
-                            className="menu-btn p-2"
-                            onClick={() => setIsOpen(!isOpen)}
-                            aria-label="Toggle menu"
-                        >
-                            {isOpen ? <X size={24} /> : <Menu size={24} />}
-                        </button>
-                    </div>
+            {/* Mobile Nav Top Bar */}
+            <header className="md:hidden fixed top-0 left-0 right-0 p-4 flex justify-between items-center z-50 bg-[var(--cream)] border-b border-[var(--dust)]/10">
+                <div className="shrink-0 pointer-events-auto">
+                    <Link href="/" aria-label="raviolifortwo home">
+                        <Image
+                            src="/ransomizer.com.png"
+                            alt="raviolifortwo"
+                            width={140}
+                            height={40}
+                            style={{
+                                objectFit: 'contain',
+                                width: '140px',
+                                height: 'auto'
+                            }}
+                            priority
+                        />
+                    </Link>
                 </div>
+                <button
+                    className="p-2 text-[var(--ink)] pointer-events-auto"
+                    onClick={() => setIsOpen(!isOpen)}
+                    aria-label="Toggle menu"
+                >
+                    {isOpen ? <X size={24} /> : <Menu size={24} />}
+                </button>
+            </header>
 
-                {/* Mobile Menu Panel */}
-                <AnimatePresence>
-                    {isOpen && (
-                        <motion.div
-                            initial={{ opacity: 0, y: -10 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            exit={{ opacity: 0, y: -10 }}
-                            transition={{ duration: 0.2 }}
-                            className="menu-panel pointer-events-auto"
-                        >
-                            {navLinks.map((link) => (
+            {/* Mobile Menu Panel */}
+            <AnimatePresence>
+                {isOpen && (
+                    <motion.div
+                        initial={{ opacity: 0, y: -10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -10 }}
+                        transition={{ duration: 0.2 }}
+                        className="md:hidden fixed top-[73px] left-0 right-0 bg-[var(--cream)] p-6 flex flex-col gap-6 z-40 border-b border-[var(--dust)]/10 shadow-lg pointer-events-auto"
+                    >
+                        {navLinks.map((link) => {
+                            const isActive = pathname === link.href || (link.href !== '/' && pathname.startsWith(link.href));
+                            return (
                                 <Link
                                     key={link.href}
                                     href={link.href}
                                     onClick={() => setIsOpen(false)}
-                                    className="block py-2"
-                                    style={{
-                                        fontFamily: 'var(--font-sans)',
-                                        fontSize: '1.2rem',
-                                        color: pathname === link.href ? link.accent : '#2f2a26',
-                                    }}
+                                    className={`mono relative transition-colors duration-200 flex items-center text-lg ${isActive ? '!text-[var(--ink)]' : 'hover:!text-[var(--ink)]'}`}
                                 >
+                                    {isActive && (
+                                        <span className="absolute -left-[16px] w-[12px] h-[1px] bg-[var(--dust)]" />
+                                    )}
                                     {link.label}
                                 </Link>
-                            ))}
-                        </motion.div>
-                    )}
-                </AnimatePresence>
-            </div>
-        </header>
+                            );
+                        })}
+                    </motion.div>
+                )}
+            </AnimatePresence>
+        </>
     );
 }
