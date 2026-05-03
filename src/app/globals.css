@@ -559,3 +559,53 @@ a, button, [role="button"] { cursor: url("data:image/svg+xml,%3Csvg xmlns='http:
   .hover-drift { transition: none !important; }
   .underline-draw::after { transition: none !important; }
 }
+
+/* ─── Header & Nav Layout fixes ────────────────────────────────── */
+.header-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 1.2rem 1.5rem;
+  position: relative;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.nav {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+@media (max-width: 768px) {
+  .nav {
+    display: none;
+  }
+}
+
+.menu-btn {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #2f2a26;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.menu-panel {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  background: #f5efe6;
+  padding: 1rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  box-shadow: 0 4px 12px rgba(60,40,20,0.05);
+}

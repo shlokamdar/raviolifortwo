@@ -10,7 +10,7 @@ interface PoemPageProps {
 }
 
 export default async function PoemPage({ params }: PoemPageProps) {
-    const { slug } = await params;
+    const { slug } = params;
     const poem = await getPoemBySlug(slug);
 
     if (!poem) {
