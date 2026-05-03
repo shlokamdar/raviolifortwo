@@ -2,6 +2,14 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import { getPoemBySlug } from "@/lib/poems";
 import { PageContainer } from "@/components/PageContainer";
+import { getAllPoems } from "@/lib/poems";
+
+export async function generateStaticParams() {
+    const poems = await getAllPoems();
+    return poems.map((poem) => ({
+        slug: poem.slug,
+    }));
+}
 
 interface PoemPageProps {
     params: Promise<{
