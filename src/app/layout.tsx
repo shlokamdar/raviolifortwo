@@ -80,13 +80,13 @@ export default function RootLayout({
         <footer className="pt-[48px] pb-[40px] flex flex-col items-center relative md:ml-[220px]">
           <div style={{ width: '48px', height: '0.5px', background: 'var(--dust)', opacity: 0.4, marginBottom: '24px' }} />
 
-          <div className="flex items-center justify-center gap-3" style={{ marginBottom: '16px' }}>
+          <div className="flex items-center justify-center gap-4" style={{ marginBottom: '16px' }}>
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img 
               src="/shloka logo.png" 
               alt="signature" 
               style={{ 
-                width: '64px', 
+                width: '100px', 
                 opacity: 0.35, 
                 mixBlendMode: 'multiply',
               }} 
