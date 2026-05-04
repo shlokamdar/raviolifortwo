@@ -77,18 +77,32 @@ export default function RootLayout({
         </main>
 
         {/* Footer — like a page closing */}
-        <footer className="pt-[48px] pb-[40px] flex flex-col items-center relative md:ml-[220px]">
-          <div style={{ width: '48px', height: '0.5px', background: 'var(--dust)', opacity: 0.4, marginBottom: '24px' }} />
+        <footer className="pt-[32px] pb-[24px] flex flex-col items-center relative md:ml-[220px]">
+          <div style={{ width: '48px', height: '0.5px', background: 'var(--dust)', opacity: 0.4, marginBottom: '32px' }} />
 
-          <div className="flex items-center justify-center gap-4" style={{ marginBottom: '16px' }}>
+          <div 
+            className="flex items-center justify-center gap-[10px]" 
+            style={{ 
+              marginBottom: '16px',
+              background: 'var(--cream)',
+              isolation: 'isolate'
+            }}
+          >
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img 
               src="/shloka logo.png" 
               alt="signature" 
               style={{ 
-                width: '100px', 
+                width: '72px', 
+                height: 'auto',
                 opacity: 0.35, 
                 mixBlendMode: 'multiply',
+                imageRendering: 'crisp-edges',
+                WebkitFontSmoothing: 'antialiased',
+                willChange: 'auto',
+                // Additional fallback for webkit
+                // @ts-ignore
+                imageRendering: '-webkit-optimize-contrast',
               }} 
             />
             <div
@@ -97,6 +111,7 @@ export default function RootLayout({
                 fontSize: "1.1rem",
                 cursor: "default",
                 userSelect: "none",
+                lineHeight: 1
               }}
               aria-hidden="true"
             >

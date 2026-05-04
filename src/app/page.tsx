@@ -77,8 +77,13 @@ export default async function Home() {
       {/* BOOK TEASER CARD */}
       <section style={{ marginBottom: '48px' }}>
         <style>{`
+          .book-teaser-card {
+            border: 0.5px solid rgba(196,168,130,0.15);
+            transition: border-color 0.3s ease, transform 0.25s ease !important;
+          }
           .book-teaser-card:hover {
             transform: rotate(0deg) !important;
+            border-color: rgba(196,168,130,0.3);
           }
         `}</style>
         <Link 
@@ -86,17 +91,17 @@ export default async function Home() {
           className="book-teaser-card block"
           style={{
             maxWidth: '480px',
-            backgroundColor: 'var(--book-bg)',
+            backgroundColor: '#1A1410',
             borderRadius: '2px',
             padding: '32px 36px',
             transform: 'rotate(-0.5deg)',
-            transition: 'transform 0.25s ease'
           }}
         >
           <div className="mono" style={{ 
             fontSize: '9px', 
             letterSpacing: '0.12em', 
-            color: 'var(--book-meta)', 
+            color: '#C4A882', 
+            opacity: 0.6,
             textTransform: 'uppercase',
             marginBottom: '16px' 
           }}>
@@ -108,7 +113,7 @@ export default async function Home() {
             fontSize: '28px', 
             fontStyle: 'italic', 
             fontWeight: 300, 
-            color: 'var(--book-text)',
+            color: '#F0E8D8',
             lineHeight: 1.2
           }}>
             i kept your place
@@ -118,7 +123,7 @@ export default async function Home() {
             fontSize: '16px', 
             fontStyle: 'italic', 
             fontWeight: 300, 
-            color: 'rgba(232,235,242,0.55)',
+            color: 'rgba(196,168,130,0.6)',
             marginBottom: '28px',
             lineHeight: 1.2
           }}>
@@ -129,17 +134,17 @@ export default async function Home() {
             fontFamily: 'var(--font-serif)', 
             fontSize: '15px', 
             fontStyle: 'italic', 
-            color: 'rgba(232,235,242,0.38)',
+            color: 'rgba(240,232,216,0.35)',
             marginBottom: '32px'
           }}>
             pressed quiet in between words, aching for your hands
           </div>
 
           <div className="flex justify-between items-center w-full">
-            <div className="mono" style={{ fontSize: '9px', color: 'rgba(139,155,180,0.5)', textTransform: 'lowercase' }}>
+            <div className="mono" style={{ fontSize: '9px', color: 'rgba(196,168,130,0.4)', textTransform: 'lowercase' }}>
               by raviolifortwo
             </div>
-            <div className="mono" style={{ fontSize: '9px', color: 'rgba(139,155,180,0.6)', textTransform: 'lowercase' }}>
+            <div className="mono" style={{ fontSize: '9px', color: 'rgba(196,168,130,0.55)', textTransform: 'lowercase' }}>
               coming soon &rarr;
             </div>
           </div>
