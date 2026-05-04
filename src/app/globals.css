@@ -94,12 +94,12 @@ body {
 
 /* --- BOOK THEME TOKENS --- */
 :root {
-  --book-bg: #1C1F2E;
-  --book-surface: #2A2E40;
-  --book-text: #E8EBF2;
-  --book-meta: #8B9BB4;
-  --book-rule: #3D4258;
-  --book-tape: #6B7A9B;
+  --book-bg: #1A1410;
+  --book-surface: #231C14;
+  --book-text: #F0E8D8;
+  --book-meta: #C4A882;
+  --book-rule: rgba(196,168,130,0.2);
+  --book-tape: #C4A882;
 }
 
 body.theme-book {
@@ -115,6 +115,7 @@ body.theme-book {
 
 body.theme-book footer img {
   opacity: 0.2 !important;
+  mix-blend-mode: screen !important;
 }
 
 body.theme-book footer div[style*="width: 48px"] {

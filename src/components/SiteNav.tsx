@@ -45,7 +45,7 @@ export function SiteNav() {
                 .kept-link-desktop:hover {
                     color: #D4B892 !important;
                 }
-                .kept-link-desktop:hover .kept-star {
+                .kept-link-desktop:hover .kept-dot {
                     opacity: 1.0 !important;
                 }
             `}</style>
@@ -78,25 +78,26 @@ export function SiteNav() {
                                 <Link
                                     key={link.href}
                                     href={link.href}
-                                    className="mono relative transition-colors duration-200 flex items-center kept-link-desktop"
-                                    style={{
-                                        color: isActive ? '#F0E8D8' : '#C4A882',
-                                    }}
+                                    className={`mono relative transition-colors duration-200 flex items-center kept-link-desktop ${isActive ? '!text-[var(--ink)]' : 'hover:!text-[var(--ink)]'}`}
                                 >
+                                    {isActive && (
+                                        <span className="absolute -left-[16px] w-[12px] h-[1px] bg-[var(--book-meta)]" />
+                                    )}
+                                    {link.label}
                                     <span 
                                         style={{
-                                            fontFamily: 'var(--font-ibm-plex-mono)',
-                                            fontSize: '10px',
-                                            color: '#C4A882',
-                                            marginRight: '5px',
+                                            display: 'inline-block',
+                                            width: '4px',
+                                            height: '4px',
+                                            borderRadius: '50%',
+                                            background: isActive ? '#F0E8D8' : '#C4A882',
+                                            marginLeft: '6px',
+                                            verticalAlign: 'middle',
                                             animation: isActive ? 'none' : 'softpulse 3s ease-in-out infinite',
                                             opacity: isActive ? 1 : 0.7,
                                         }}
-                                        className="kept-star"
-                                    >
-                                        ✦
-                                    </span>
-                                    {link.label}
+                                        className="kept-dot"
+                                    />
                                 </Link>
                             );
                         }
@@ -184,24 +185,25 @@ export function SiteNav() {
                                                 fontSize: '13px',
                                                 textTransform: 'lowercase',
                                                 letterSpacing: '0.06em',
-                                                color: isActive ? '#F0E8D8' : '#C4A882',
+                                                color: isActive ? 'var(--ink)' : 'var(--dust)',
                                                 textDecoration: 'none',
                                             }}
                                         >
+                                            {link.label}
                                             <span 
                                                 style={{
-                                                    fontFamily: 'var(--font-ibm-plex-mono)',
-                                                    fontSize: '10px',
-                                                    color: '#C4A882',
-                                                    marginRight: '5px',
+                                                    display: 'inline-block',
+                                                    width: '4px',
+                                                    height: '4px',
+                                                    borderRadius: '50%',
+                                                    background: isActive ? '#F0E8D8' : '#C4A882',
+                                                    marginLeft: '6px',
+                                                    verticalAlign: 'middle',
                                                     animation: isActive ? 'none' : 'softpulse 3s ease-in-out infinite',
                                                     opacity: isActive ? 1 : 0.7,
                                                 }}
-                                                className="kept-star"
-                                            >
-                                                ✦
-                                            </span>
-                                            {link.label}
+                                                className="kept-dot"
+                                            />
                                         </Link>
                                     );
                                 }

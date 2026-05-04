@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { getAllPoems } from "@/lib/poems";
+import { TimeGreeting } from "@/components/TimeGreeting";
 
 const getTapeColor = (tags: string[]) => {
   if (!tags || tags.length === 0) return 'var(--tape-warm)';
@@ -21,6 +22,7 @@ export default async function Home() {
     <div className="w-full pb-32">
       {/* HERO SECTION */}
       <section className="pt-[80px] md:pt-[120px] mb-12">
+        <TimeGreeting />
         <h1 
           style={{
             fontFamily: 'var(--font-serif)',
@@ -78,12 +80,12 @@ export default async function Home() {
       <section style={{ marginBottom: '48px' }}>
         <style>{`
           .book-teaser-card {
-            border: 0.5px solid rgba(196,168,130,0.15);
+            border: 0.5px solid rgba(196,168,130,0.15) !important;
             transition: border-color 0.3s ease, transform 0.25s ease !important;
           }
           .book-teaser-card:hover {
             transform: rotate(0deg) !important;
-            border-color: rgba(196,168,130,0.3);
+            border-color: rgba(196,168,130,0.3) !important;
           }
         `}</style>
         <Link 
@@ -97,7 +99,8 @@ export default async function Home() {
             transform: 'rotate(-0.5deg)',
           }}
         >
-          <div className="mono" style={{ 
+          <div style={{ 
+            fontFamily: 'var(--font-ibm-plex-mono)',
             fontSize: '9px', 
             letterSpacing: '0.12em', 
             color: '#C4A882', 
@@ -141,11 +144,11 @@ export default async function Home() {
           </div>
 
           <div className="flex justify-between items-center w-full">
-            <div className="mono" style={{ fontSize: '9px', color: 'rgba(196,168,130,0.4)', textTransform: 'lowercase' }}>
+            <div style={{ fontFamily: 'var(--font-ibm-plex-mono)', fontSize: '9px', color: 'rgba(196,168,130,0.4)', textTransform: 'lowercase' }}>
               by raviolifortwo
             </div>
-            <div className="mono" style={{ fontSize: '9px', color: 'rgba(196,168,130,0.55)', textTransform: 'lowercase' }}>
-              coming soon &rarr;
+            <div style={{ fontFamily: 'var(--font-ibm-plex-mono)', fontSize: '9px', color: 'rgba(196,168,130,0.55)', textTransform: 'lowercase' }}>
+              coming on 01/07/26 &rarr;
             </div>
           </div>
         </Link>
