@@ -5,6 +5,17 @@ import { Poem } from '@/types/poem';
 
 const poemsDirectory = path.join(process.cwd(), 'src/content/poems');
 
+function generateExcerpt(data: any, content: string): string {
+    if (data.cardLine) {
+        return data.cardLine.toLowerCase().replace(/["']/g, '').trim();
+    }
+    const lines = content.split('\n')
+        .map(l => l.trim())
+        .filter(l => l.length > 0 && !l.startsWith('after ') && !l.startsWith('for '));
+    const excerpt = lines.slice(0, 2).join('\n').toLowerCase().replace(/["']/g, '');
+    return excerpt.length > 120 ? excerpt.slice(0, 117) + '...' : excerpt;
+}
+
 export async function getAllPoems(): Promise<Poem[]> {
     if (!fs.existsSync(poemsDirectory)) {
         return [];
@@ -21,7 +32,8 @@ export async function getAllPoems(): Promise<Poem[]> {
             return {
                 slug,
                 fullPoem: content,
-                ...(data as Omit<Poem, 'slug' | 'fullPoem'>),
+                excerpt: generateExcerpt(data, content),
+                ...(data as Omit<Poem, 'slug' | 'fullPoem' | 'excerpt'>),
             } as Poem;
         });
 
@@ -39,7 +51,8 @@ export async function getPoemBySlug(slug: string): Promise<Poem | null> {
     return {
         slug,
         fullPoem: content,
-        ...(data as Omit<Poem, 'slug' | 'fullPoem'>),
+        excerpt: generateExcerpt(data, content),
+        ...(data as Omit<Poem, 'slug' | 'fullPoem' | 'excerpt'>),
     } as Poem;
 }
 

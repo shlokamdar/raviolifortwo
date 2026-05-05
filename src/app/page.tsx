@@ -1,16 +1,17 @@
 import Link from "next/link";
 import { getAllPoems } from "@/lib/poems";
 import { TimeGreeting } from "@/components/TimeGreeting";
+import { RandomFeaturedPoem } from "@/components/RandomFeaturedPoem";
 
-const getTapeColor = (tags: string[]) => {
-  if (!tags || tags.length === 0) return 'var(--tape-warm)';
+const getTapeColorClass = (tags: string[]) => {
+  if (!tags || tags.length === 0) return 'tape-warm';
   const t = tags[0].toLowerCase();
-  if (t === 'everyday-magic') return 'var(--tape-sage)';
-  if (t === 'self-portrait') return 'var(--tape-lilac)';
-  if (t === 'yearning') return 'var(--tape-warm)';
-  if (t === 'love-and-longing') return 'var(--tape-rose)';
-  if (t === 'quiet-grief') return 'var(--tape-cool)';
-  return 'var(--tape-warm)';
+  if (t === 'everyday-magic') return 'tape-yellow';
+  if (t === 'self-portrait') return 'tape-warm';
+  if (t === 'yearning') return 'tape-sage';
+  if (t === 'love-and-longing') return 'tape-rose';
+  if (t === 'archives-from-instagram') return 'tape-cool';
+  return 'tape-warm';
 };
 
 export default async function Home() {
@@ -41,39 +42,7 @@ export default async function Home() {
 
       {/* FEATURED POEM CARD */}
       <section style={{ marginTop: '48px', marginBottom: '48px' }}>
-        <div className="poem-card-base" style={{ maxWidth: '480px', padding: '28px 32px' }}>
-          {/* Tape */}
-          <div 
-            style={{
-              position: 'absolute',
-              top: '-4px',
-              right: '-12px',
-              width: '40px',
-              height: '8px',
-              backgroundColor: getTapeColor(featuredPoem?.tags),
-              transform: 'rotate(-1deg)',
-              zIndex: 10
-            }} 
-          />
-          <div className="mono" style={{ marginBottom: '16px' }}>from the pages</div>
-          <p 
-            style={{ 
-              fontFamily: 'var(--font-serif)', 
-              fontStyle: 'italic', 
-              fontSize: '18px', 
-              lineHeight: 1.6,
-              marginBottom: '24px' 
-            }}
-          >
-            {featuredPoem?.cardLine || "A quiet thought pinned to the page,\nwaiting to be found,\nby someone who knows the feeling."}
-          </p>
-          <div className="mono flex justify-between items-center w-full">
-            <span>{featuredPoem?.date || "recently"}</span>
-            <Link href={`/poems/${featuredPoem?.slug}`} className="hover:text-[var(--ink)] transition-colors">
-              read &rarr;
-            </Link>
-          </div>
-        </div>
+        <RandomFeaturedPoem poems={allPoems} />
       </section>
 
       {/* BOOK TEASER CARD */}
@@ -162,20 +131,41 @@ export default async function Home() {
             const colSpan = i % 4 === 0 ? 'md:col-span-2' : 'md:col-span-1';
             const rotation = i % 2 === 0 ? 'rotate(1deg)' : 'rotate(-1deg)';
             const marginTop = i % 3 === 1 ? 'md:mt-12' : i % 3 === 2 ? 'md:-mt-6' : '';
+            const tapeClass = getTapeColorClass(poem.tags || []);
             return (
               <Link 
                 key={poem.slug} 
                 href={`/poems/${poem.slug}`}
                 className={`poem-card-base block ${colSpan} ${marginTop}`}
                 style={{
-                  padding: '24px 28px',
+                  padding: '28px 32px',
                   transform: rotation
                 }}
               >
-                <h3 style={{ fontFamily: 'var(--font-serif)', fontStyle: 'italic', fontSize: '20px', color: 'var(--ink)', marginBottom: '8px' }}>
+                <div 
+                  className={`washi-tape ${tapeClass}`}
+                  style={{ transform: 'rotate(1.5deg)' }}
+                />
+                <h3 style={{ fontFamily: 'var(--font-serif)', fontStyle: 'italic', fontSize: '20px', color: 'var(--ink)', marginBottom: '4px' }}>
                   {poem.title}
                 </h3>
-                <div className="mono">{poem.tags?.[0] ? `#${poem.tags[0]}` : ''}</div>
+                <div className="mono" style={{ marginBottom: '16px' }}>
+                  {poem.tags?.[0] ? `#${poem.tags[0]}` : ''}
+                </div>
+                {poem.excerpt && (
+                  <p 
+                    style={{ 
+                      fontFamily: 'var(--font-serif)', 
+                      fontStyle: 'italic', 
+                      fontSize: '16px', 
+                      color: 'rgba(44, 40, 37, 0.75)', 
+                      lineHeight: 1.5,
+                      marginBottom: 0
+                    }}
+                  >
+                    {poem.excerpt}
+                  </p>
+                )}
               </Link>
             )
           })}

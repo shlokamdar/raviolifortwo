@@ -8,15 +8,15 @@ interface ArchiveClientProps {
     initialPoems: Poem[];
 }
 
-const getTapeColor = (tags: string[]) => {
-  if (!tags || tags.length === 0) return 'var(--tape-warm)';
+const getTapeColorClass = (tags: string[]) => {
+  if (!tags || tags.length === 0) return 'tape-warm';
   const t = tags[0].toLowerCase();
-  if (t === 'everyday-magic') return 'var(--tape-sage)';
-  if (t === 'self-portrait') return 'var(--tape-lilac)';
-  if (t === 'yearning') return 'var(--tape-warm)';
-  if (t === 'love-and-longing') return 'var(--tape-rose)';
-  if (t === 'quiet-grief') return 'var(--tape-cool)';
-  return 'var(--tape-warm)';
+  if (t === 'everyday-magic') return 'tape-yellow';
+  if (t === 'self-portrait') return 'tape-warm';
+  if (t === 'yearning') return 'tape-sage';
+  if (t === 'love-and-longing') return 'tape-rose';
+  if (t === 'archives-from-instagram') return 'tape-cool';
+  return 'tape-warm';
 };
 
 // Rotations array to cycle through
@@ -97,16 +97,9 @@ export function ArchiveClient({ initialPoems }: ArchiveClientProps) {
                             }}
                         >
                             {/* Tape strip */}
-                            <div
-                                style={{
-                                    position: 'absolute',
-                                    top: '-3px',
-                                    right: '16px',
-                                    width: '36px',
-                                    height: '7px',
-                                    backgroundColor: getTapeColor(poem.tags),
-                                    zIndex: 2,
-                                }}
+                            <div 
+                                className={`washi-tape ${getTapeColorClass(poem.tags || [])}`}
+                                style={{ transform: 'rotate(1deg)' }}
                             />
 
                             <h2 style={{ fontFamily: 'var(--font-serif)', fontStyle: 'italic', fontSize: '20px', color: 'var(--ink)', marginBottom: '8px' }}>
@@ -117,9 +110,9 @@ export function ArchiveClient({ initialPoems }: ArchiveClientProps) {
                             </div>
                             
                             {/* Show excerpt only for wider columns */}
-                            {(colSpan.includes('col-span-7') || colSpan.includes('col-span-12')) && poem.cardLine && (
-                                <p className="mt-4" style={{ fontFamily: 'var(--font-serif)', fontSize: '16px', color: 'var(--ink)', fontStyle: 'italic' }}>
-                                    {poem.cardLine}
+                            {(colSpan.includes('col-span-7') || colSpan.includes('col-span-12')) && poem.excerpt && (
+                                <p className="mt-4" style={{ fontFamily: 'var(--font-serif)', fontSize: '16px', color: 'rgba(44, 40, 37, 0.75)', fontStyle: 'italic', lineHeight: 1.5 }}>
+                                    {poem.excerpt}
                                 </p>
                             )}
                         </Link>
