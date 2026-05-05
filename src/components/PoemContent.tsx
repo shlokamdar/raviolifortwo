@@ -16,9 +16,11 @@ const getTapeColor = (tag: string) => {
 
 interface PoemContentProps {
   poem: Poem;
+  prevPoem?: { slug: string; title: string };
+  nextPoem?: { slug: string; title: string };
 }
 
-export function PoemContent({ poem }: PoemContentProps) {
+export function PoemContent({ poem, prevPoem, nextPoem }: PoemContentProps) {
   const [noteOpen, setNoteOpen] = useState(false);
 
   const renderStanza = (stanza: string, index: number) => {
@@ -27,11 +29,13 @@ export function PoemContent({ poem }: PoemContentProps) {
     
     const lines = stanza.split('\n');
     return (
-      <div 
+      <p 
         key={index} 
         style={{ 
           marginLeft: `${stanzaIndent}px`,
-          marginBottom: '40px' 
+          marginBottom: '40px',
+          marginRight: 0,
+          marginTop: 0
         }}
       >
         {lines.map((line, lineIndex) => {
@@ -58,18 +62,19 @@ export function PoemContent({ poem }: PoemContentProps) {
           }
 
           return (
-            <div 
+            <span 
               key={lineIndex} 
               style={{ 
                 paddingLeft: `${paddingLeft}px`,
-                fontStyle: isItalic ? 'italic' : 'normal'
+                fontStyle: isItalic ? 'italic' : 'normal',
+                display: 'block'
               }}
             >
               {text || '\u00A0'}
-            </div>
+            </span>
           );
         })}
-      </div>
+      </p>
     );
   };
 
@@ -79,9 +84,9 @@ export function PoemContent({ poem }: PoemContentProps) {
     <div style={{ maxWidth: '520px', paddingTop: '56px' }}>
       
       {/* 1. Poem Title */}
-      <div className="mono" style={{ fontSize: '10px', color: 'var(--dust)', letterSpacing: '0.06em', marginBottom: '8px' }}>
+      <h1 className="mono" style={{ fontSize: '10px', color: 'var(--dust)', letterSpacing: '0.06em', marginBottom: '8px', fontWeight: 'normal', margin: 0, padding: 0 }}>
         {poem.title}
-      </div>
+      </h1>
 
       {/* 2. Written Date */}
       <div className="mono" style={{ fontSize: '10px', color: 'var(--dust)', opacity: 0.5, marginBottom: '16px' }}>
@@ -195,14 +200,34 @@ export function PoemContent({ poem }: PoemContentProps) {
           — seven
         </div>
 
-        <div style={{ marginTop: '48px', paddingBottom: '80px' }}>
-          <Link 
-            href="/archive" 
-            className="mono hover:text-[var(--ink)] transition-colors"
-            style={{ fontSize: '10px', color: 'var(--dust)', opacity: 0.6 }}
-          >
-            ← back to what i wrote
-          </Link>
+        <div style={{ marginTop: '48px', paddingBottom: '80px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+          {prevPoem ? (
+            <Link 
+              href={`/poems/${prevPoem.slug}`} 
+              className="mono hover:text-[var(--ink)] transition-colors"
+              style={{ fontSize: '10px', color: 'var(--dust)', opacity: 0.6 }}
+            >
+              ← prev: {prevPoem.title}
+            </Link>
+          ) : (
+            <Link 
+              href="/archive" 
+              className="mono hover:text-[var(--ink)] transition-colors"
+              style={{ fontSize: '10px', color: 'var(--dust)', opacity: 0.6 }}
+            >
+              ← back to what i wrote
+            </Link>
+          )}
+
+          {nextPoem && (
+            <Link 
+              href={`/poems/${nextPoem.slug}`} 
+              className="mono hover:text-[var(--ink)] transition-colors text-right"
+              style={{ fontSize: '10px', color: 'var(--dust)', opacity: 0.6 }}
+            >
+              next: {nextPoem.title} →
+            </Link>
+          )}
         </div>
       </div>
     </div>

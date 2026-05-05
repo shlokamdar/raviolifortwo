@@ -1,43 +1,35 @@
-import { MetadataRoute } from 'next'
-import fs from 'fs'
-import path from 'path'
+import { MetadataRoute } from 'next';
+import { getAllPoems } from '@/lib/poems';
 
-export default function sitemap(): MetadataRoute.Sitemap {
-    const baseUrl = 'https://raviolifortwo.vercel.app'
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  const poems = await getAllPoems();
 
-    // Static routes
-    const staticRoutes = [
-        '',
-        '/about',
-        '/archive',
-        '/poems',
-        '/letters',
-        '/shelf',
-    ].map((route) => ({
-        url: `${baseUrl}${route}`,
-        lastModified: new Date(),
-        changeFrequency: 'weekly' as const,
-        priority: route === '' ? 1 : 0.8,
-    }))
+  const poemEntries: MetadataRoute.Sitemap = poems.map((poem) => ({
+    url: `https://raviolifortwo.vercel.app/poems/${poem.slug}`,
+    lastModified: new Date(poem.date || new Date()),
+    changeFrequency: 'weekly',
+    priority: 0.8,
+  }));
 
-    // Dynamic poem routes
-    const poemsDirectory = path.join(process.cwd(), 'src/content/poems')
-    let poemRoutes: MetadataRoute.Sitemap = []
-
-    try {
-        const filenames = fs.readdirSync(poemsDirectory)
-        poemRoutes = filenames.map((filename) => {
-            const slug = filename.replace(/\.mdx$/, '')
-            return {
-                url: `${baseUrl}/poems/${slug}`,
-                lastModified: new Date(),
-                changeFrequency: 'monthly' as const,
-                priority: 0.6,
-            }
-        })
-    } catch (error) {
-        console.error('Error reading poems directory for sitemap:', error)
-    }
-
-    return [...staticRoutes, ...poemRoutes]
+  return [
+    {
+      url: 'https://raviolifortwo.vercel.app',
+      lastModified: new Date(),
+      changeFrequency: 'daily',
+      priority: 1.0,
+    },
+    {
+      url: 'https://raviolifortwo.vercel.app/kept',
+      lastModified: new Date(),
+      changeFrequency: 'weekly',
+      priority: 0.7,
+    },
+    {
+      url: 'https://raviolifortwo.vercel.app/about',
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.6,
+    },
+    ...poemEntries,
+  ];
 }

@@ -52,11 +52,19 @@ export const metadata: Metadata = {
   },
 };
 
+import Image from "next/image";
+
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const websiteJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "raviolifortwo",
+    "url": "https://raviolifortwo.vercel.app"
+  };
 
   return (
     <html
@@ -67,6 +75,12 @@ export default function RootLayout({
         "h-full antialiased"
       )}
     >
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }}
+        />
+      </head>
       <body className="min-h-full flex flex-col selection:bg-[var(--tape-warm)]/30 selection:text-[var(--ink)]">
         <PorchLightEffect />
         <SiteNav />
@@ -88,10 +102,11 @@ export default function RootLayout({
               isolation: 'isolate'
             }}
           >
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img 
+            <Image 
               src="/shloka logo.png" 
               alt="signature" 
+              width={72}
+              height={30}
               style={{ 
                 width: '72px', 
                 height: 'auto',
